@@ -1,0 +1,23 @@
+body {
+    background-color: #333;
+}
+
+.clockContainer{
+    position: relative;
+    top: 150px;
+    left: auto;
+    width: 85px;
+    height: 30px;
+    border: #aaf solid 3px;
+    border-radius: 10px;
+    padding: 5px;
+    margin: auto;
+    color:greenyellow;
+    background-color: black;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 600;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 10px 10px 5px #000;
+}
