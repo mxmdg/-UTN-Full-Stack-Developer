@@ -44,20 +44,22 @@ const formSegurosHogar = {
         }]},                                              
     };
 
+
+const yearsAndYears = (from,to)=> {
+    let years = []
+    for (let i = from; i < to; i++){
+        years.push({Fabricacion: i})
+    };
+    return years
+}
+
     const formSegurosAuto = {
         'Marca': {type: String, required: false},
         'Modelo': {type: String, required: true},
         'Patente': {type: String, required: true},
-        'Año': {type: Number, required: false},
+        'Año': {type: {name: "Select"}, options: yearsAndYears(1990,2023)},
         'Correo Electronico': {type: String, required: true},
         'Telefono': {type: Number, required: false},
-        'Segmento': {type: {name: "Select"}, options: [{ 
-                                                    Gama: "A" 
-                                                    }, { 
-                                                    Gama: "B" 
-                                                    }, { 
-                                                    Gama: "C" 
-                                                    }]},
         'Seguro': {type: {name: "Select"}, options: [{ 
             Seguro: "Responsabilidad Civil" ,
             $: 500 
@@ -327,6 +329,142 @@ function formValidator (){
         return true;
     } else {
         alert(error);
+    }
+}
+
+function createFormV2 (contID, data, fn) {
+    const formContainer = document.getElementById(contID);
+    let props = Object.getOwnPropertyNames(data);
+    let req = [];
+    let typ = [];
+    for (let p of props) {
+        req.push(data[p].required);
+        typ.push(data[p].type.name);
+    };
+
+    const form = document.createElement("form");
+    form.setAttribute("id", contID + "_form");
+
+    try {
+        for (let i = 0 ; i < props.length ; i++) {
+            if (typ[i] == "Select") {
+                let div = document.createElement("div");
+                let divError = document.createElement("div");
+                divError.classList.add("divError");
+                divError.setAttribute("id",`error_${props[i]}`)
+                div.innerHTML = `<label>${props[i]}</label>`;
+                let selector = createSelector(data[props[i]].options);
+                div.appendChild(selector);
+                div.appendChild(divError);
+                form.appendChild(div);
+            } else {
+                let tn = `<label for="id_${props[i]}">${props[i]}</label>
+                            <input type="${typ[i]}" placeholder="${props[i]}" required="${req[i]}" id="id_${props[i]}" name="${props[i]}">
+                            <div class="divError" id="error_${props[i]}"></div>`
+                crearDocFrag(form,"DIV",tn)
+            }
+                             
+        };
+    } catch (e) {
+        alert('El selector no se ha podido crear. Envienos la informacion para mejorar nuestro servicio')
+        crearDocFrag(form,"textarea",e)
+    }
+  
+    crearDocFrag(form,"button","Enviar","submitBTN");
+    crearDocFrag(form,"button","Cancelar","cancelBTN");
+    formContainer.appendChild(form);
+
+    document.getElementById("submitBTN").setAttribute("type","submit");
+    document.getElementById("cancelBTN").setAttribute("type","Button");
+
+    document.getElementById("cancelBTN").addEventListener("click", (e => {
+        e.stopPropagation()
+        removeGrandParent(e);
+        const cont = document.getElementById("newClient")
+        cont.classList.add("hidden");
+    }))
+
+    document.getElementById(contID + "_form").addEventListener("submit", (e)=> {
+        e.preventDefault();
+        if (formValidatorV2()) {
+            console.log(formValidatorV2())
+            fn(e.target);
+        }
+       
+       // e.target.reset()
+    })
+};
+
+function formValidatorV2 (){
+    let mailRe = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/gi;
+    let pat = /^[a-zA-Z]{2}[0-9]{3}[a-zA-Z]{2}$|[a-zA-Z]{3}[0-9]{3}$/gi
+    let error = {id: "" , message: "" }
+    const inputs = document.getElementsByTagName("input");
+    const selects = document.getElementsByTagName("select")
+    for (input of inputs) {
+        if (input.type == "text") {
+            if (input.name == "Correo Electronico" && mailRe.test(input.value) == false) {
+                console.log(input.value)
+                error.message = "Ingrese una direccion de correo valida";
+                error.id = "error_" + input.name;
+                input.focus();
+            }
+            else if (input.name == "Patente" && pat.test(input.value) == false) {
+                console.log(input.value)
+                error.message = "Ingrese un numero de Patente valido";
+                error.id = "error_" + input.name;
+                input.focus();
+            }
+            else if (input.value.length <= 1 || input.value.length > 50) {
+                error.message = (`Compruebe los datos en el campo ${input.name}`);
+                error.id = "error_" + input.name;
+                input.focus()
+            }
+        } else if (input.type == "number") {
+            switch (input.name) {
+                case 'DNI':
+                    if (input.value.length !== 8) {
+                        error.message = 'Ingrese numero de DNI válido';
+                        error.id = "error_" + input.name;
+                        input.focus();
+                    }
+                    break;
+                case 'Telefono':
+                    if (input.value.length !== 10) {
+                        error.message = 'Ingrese numero de Telefono válido';
+                        error.id = "error_" + input.name;
+                        input.focus();
+                    }
+                    break;
+                case 'Año':
+                    if (input.value.length !== 4) {
+                        error.message = 'Ingrese 4 digitos para el año';
+                        error.id = "error_" + input.name;
+                        input.focus();
+                    }
+                    break;
+            }
+            
+        } 
+            
+    }
+    for (let sel of selects) {
+        if (sel.value == "Elija una opción") {
+            error.message = "Seleccione un elemento de la lista";
+            error.id = "error_" + sel.name;
+            console.log(error)
+            sel.focus();
+        }
+    }
+    if (error.message == "" && error.id == "") {
+        return true;
+    } else {
+        let errMessage = document.getElementById(error.id);
+        errMessage.innerHTML = `<p>${error.message}</p>`;
+       /*  errMessage.previousElementSibling.addEventListener("change",(e)=>{
+            e.preventDefault();
+            errMessage.innerHTML = "";
+        }) */
     }
 }
 
