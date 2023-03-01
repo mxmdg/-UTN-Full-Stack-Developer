@@ -56,7 +56,7 @@ class calculadora {
     armarCalculadora = ()=> {
         const cuerpo = (this.cuerpo());
         cuerpo.appendChild(this.display());
-        cuerpo.appendChild(this.createNumButton(0,10));
+        cuerpo.appendChild(this.armarBotonera());
         return cuerpo
     }
 
@@ -81,32 +81,44 @@ class calculadora {
         return display
     }
 
-    crearBotones (arr, claseDeBoton) {                         
+    crearBotones (arr, claseDeBoton) {   
+        let teclado = document.createElement("div")
+        teclado.classList.add("tecladito")                      
         for (let i = 0; i < arr.length; i++) {
             const btn = document.createElement("div");
-            btn.innerHTML = `${i}`;
-            btn.classList.add("claseDeBoton");
-            btn.id = `btn_${i}`;
+            btn.innerHTML = `${arr[i]}`;
+            btn.classList.add(claseDeBoton);
+            btn.id = `btn_${arr[i]}`;
+            teclado.appendChild(btn)
         }
-        
+        return teclado
     }
 
     // const botonera = document.createElement("div");
     // botonera.classList.add("casioCalculator")
 
     createNumArr (from,to) {
-      
+        let arr = []
         for (let i = 0; i < to; i++){
-            let arr = []
             try {
                arr.push(i);
             } catch (err) {
                 console.log(err);
             }
-            return arr
         };
-       
+       return arr
     };
+
+    armarBotonera(){
+        let botonera = document.createDocumentFragment();
+        let numeros = this.createNumArr(0,10);
+        let operaciones = ["+","-","*","/","=","C","CA"];
+        let numBtn = this.crearBotones(numeros,"numBtn");
+        let opBtn = this.crearBotones(operaciones,"opBtn");
+        botonera.appendChild(numBtn);
+        botonera.appendChild(opBtn);
+        return botonera
+    }
     
     sumar (a,b) {
         let c = a + b;

@@ -40,7 +40,8 @@ body {
     margin: 20px;
     border-radius: 10px;
     background-color: #21D4FD;
-    background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+    /* background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%); */
+    background-image: url(https://thumbs.dreamstime.com/b/fondo-de-aluminio-de-la-textura-23313511.jpg);
     box-shadow: 7px 8px 10px #00000099;
 }
 
@@ -54,9 +55,12 @@ body {
     font-weight: 600;
 }
 
-.casioCalculator{
+.tecladito{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 40px 40px 40px;
+    grid-template-rows: 40px 40px 40px;
+    gap: 20px;
+
 }
 
 .pantallita{
@@ -74,22 +78,48 @@ body {
 }
 
 .numBtn, .opBtn {
-    width: 35px;
-    height: 30px;
-    border: 2px solid #333;
-    background: #151515;
+    grid-auto-flow: dense;
+    width: 40px;
+    height: 40px;
+    background-image: url(https://th.bing.com/th/id/OIP.fLRZaoiLnZylDtC5qq8J-QHaHa?pid=ImgDet&rs=1);
     border-radius: 5px;
-    font-weight: 800;
+    font-weight: 900;
+    font-size: 17px;
     text-align: center;
     padding: 3px;
     margin: 5px;
     font-family: 'Bungee Hairline', sans-serif;
-
+    
 }
 
 .numBtn {
-    color:#999;
+    color:#fff;
 }
 .opBtn {
-    color: #0cd;
+    color: #0ef;
+
 }
+
+#btn_0 {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    width: 160px;
+}
+#btn_\= {
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: 3;
+    grid-row-end: 3;
+    width: 100px;
+}
+
+#btn_C, #btn_CA {
+    color: #c30;
+}
+
+#btn_\+ {
+    grid-column: 1 / 1;
+    grid-row: 1 / 3;
+    height: 100px;
+}
+
