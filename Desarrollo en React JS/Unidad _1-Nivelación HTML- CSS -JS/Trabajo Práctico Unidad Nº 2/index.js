@@ -22,41 +22,33 @@ const printTime = () => {
     setTimeout("printTime()", 1000)
 }
 
-// const sumar = (a,b)=>{
-//     let c = a + b;
-//     console.log(`${a} + ${b} = ${c}`)
-//     return c
-// }
-
-// const restar = (a,b)=>{
-//     let c = a - b;
-//     console.log(`${a} - ${b} = ${c}`)
-//     return c
-// }
-
-// const multiplicar = (a,b)=>{
-//     let c = a * b;
-//     console.log(`${a} * ${b} = ${c}`)
-//     return c
-// }
-
-// const dividir = (a,b)=>{
-//     let c = (b == 0)?"Error: No se puede dividir por 0":a/b;
-//     console.log(`${a} / ${b} = ${c}`)
-//     return c
-// }
-
-// const calcular = (a,b,operacion)=>{
-//     let c = operacion(a,b);
-//     return c
-// }
 
 class calculadora {
+    constructor() {
+        this.botonera = this.armarBotonera();
+        this.operacion = "";
+        this.estado = ""
+    }
 
+    v1 = () => document.getElementById("dispValor1");
+    v2 = () => document.getElementById("dispValor2");
+    CA = () => document.getElementById("btn_CA");
+    C = () => document.getElementById("btn_C");
+    igual = () => document.getElementById("btn_\=");
+    
     armarCalculadora = ()=> {
         const cuerpo = (this.cuerpo());
         cuerpo.appendChild(this.display());
         cuerpo.appendChild(this.armarBotonera());
+        document.addEventListener("DOMContentLoaded", (e)=>{
+            try {
+                this.escucharEventos();
+                console.log("escuchando eventos")
+            } catch (e) {
+                console.log("No se escucha ningun evento porque " + e)
+            }
+        })
+        this.estado = "encendida"
         return cuerpo
     }
 
@@ -98,8 +90,8 @@ class calculadora {
     // botonera.classList.add("casioCalculator")
 
     createNumArr (from,to) {
-        let arr = []
-        for (let i = 0; i < to; i++){
+        let arr = ["."]
+        for (let i = from; i < to; i++){
             try {
                arr.push(i);
             } catch (err) {
@@ -112,21 +104,23 @@ class calculadora {
     armarBotonera(){
         let botonera = document.createDocumentFragment();
         let numeros = this.createNumArr(0,10);
-        let operaciones = ["+","-","*","/","=","C","CA"];
+        let operaciones = ["Pi","Ran","+","-","*","/","=","C","CA"];
         let numBtn = this.crearBotones(numeros,"numBtn");
+        let decimal = this.crearBotones(["."],"numBtn")
         let opBtn = this.crearBotones(operaciones,"opBtn");
         botonera.appendChild(numBtn);
         botonera.appendChild(opBtn);
+     
         return botonera
     }
     
-    sumar (a,b) {
+    sumar (a = 0,b = 0) {
         let c = a + b;
         console.log(`${a} + ${b} = ${c}`)
         return c
     }
     
-    restar (a,b) {
+    restar (a = 0,b = 0) {
         let c = a - b;
         console.log(`${a} - ${b} = ${c}`)
         return c
@@ -144,18 +138,142 @@ class calculadora {
         return c
     }
 
-    clearAll () {
+    borrarTodo () {
+        this.v1().innerHTML = "";
+        this.v2().innerHTML = "";
+        this.operacion = "";
+    }
 
+    borrar () {
+        this.v1().innerHTML = this.v1().innerHTML.slice(0, (this.v1().innerHTML.length -1) ); 
+    }
+
+    ingresarValores (btn) {
+        if (this.estado == "encendida") {
+            this.v1().innerHTML += btn.textContent;
+        } else if (this.estado == "resuelto") {
+            this.v1().innerHTML = "";
+            this.v1().innerHTML += btn.textContent;
+            this.estado = "encendida";
+        }
+        console.log(this.estado)
     }
     
+    operar () {
+        this.v2().innerHTML = this.v1().innerHTML;
+        this.v1().innerHTML = "";
+        console.log("Operar: ingresar otro valor")
+        //this.estado = "calulando"
+    }
+
     calcular (a,b,operacion) {
         let c = operacion(a,b);
         return c
     }
+
+    resolver () {
+        switch (this.operacion) {
+            case "+":
+              // código a ejecutar si el operador es "+"
+              this.mostrarResultado(this.calcular(Number(this.v2().textContent), Number(this.v1().textContent), this.sumar))
+              break;
+            case "-":
+              // código a ejecutar si el operador es "-"
+              this.mostrarResultado(this.calcular(this.v2().textContent, this.v1().textContent, this.restar))
+              break;
+            case "*":
+              // código a ejecutar si el operador es "*"
+             this.mostrarResultado(this.calcular(this.v2().textContent, this.v1().textContent, this.multiplicar))
+              break;
+            case "/":
+              // código a ejecutar si el operador es "/"
+              this.mostrarResultado(this.calcular(this.v2().textContent, this.v1().textContent, this.dividir))
+              break;
+            // default:
+            //   // código a ejecutar si el operador no es ninguno de los cuatro operadores básicos
+            //   this.v1().innerHTML = "ERROR"
+            //   break;
+          }
+    }
+    
+    mostrarResultado (res) {
+        this.v1().innerHTML = res;
+        this.v2().innerHTML = "";
+        this.operacion = "";
+        this.estado = "resuelto"
+    }
+
+
+
+    escucharEventos() {
+        let numBtn = document.getElementsByClassName("numBtn");
+        let opBtn = document.getElementsByClassName("opBtn");
+        console.log(opBtn)
+        for (let btn of numBtn) {
+            btn.addEventListener("click",(e)=>{
+                e.preventDefault();
+                this.ingresarValores(btn)
+                
+            })
+            document.addEventListener("keydown",(e)=>{
+                    console.log(e.key)
+                    if (e.key == btn.textContent) {
+                        e.preventDefault();
+                        this.ingresarValores(btn)
+                    } else if (e.key == "+" || e.key == "-" || e.key == "*" || e.key == "/") {
+                        if (this.v1().innerHTML !== "" && this.v2().innerHTML == "") {
+                            this.operar()
+                        }
+                        this.operacion = e.key
+                    } else if (e.key == "Enter") {
+                        if (this.v1().innerHTML !== ""){
+                            this.resolver();
+                        }
+                    } else if (e.key == "Backspace") {
+                        this.borrar()                        
+                    } else if (e.key == "Delete") {
+                        this.borrarTodo()
+                    }
+                
+            })
+        }
+
+        
+
+        this.CA().addEventListener("click",(e)=>{
+            e.preventDefault();
+            this.borrarTodo();
+        });
+
+        for (let i = 0; i < opBtn.length; i++) {
+            opBtn[i].addEventListener("click",(e)=>{
+                e.preventDefault()
+                if (opBtn[i].textContent == "+" || opBtn[i].textContent == "-" || opBtn[i].textContent == "*" || opBtn[i].textContent == "/") {
+                    this.operar();
+                    this.operacion = (e.target.textContent)
+                } else if (opBtn[i].textContent == "Pi"){
+                    this.v1().innerHTML = Math.PI
+                } else if (opBtn[i].textContent == "Ran"){
+                    this.v1().innerHTML = Math.floor(Math.random() * 1000)
+                }
+                console.log(this.operacion)
+            })
+        }
+
+       this.C().addEventListener("click",(e)=>{
+            e.preventDefault();
+            this.borrar();
+        })
+
+        this.igual().addEventListener("click", (e)=>{
+            this.resolver();
+            console.log(this.operacion)
+        })
+    }
 }
 
 const miCalculadora = new calculadora();
-const operaciones = Object.getOwnPropertyNames(miCalculadora);
+// const operaciones = Object.getOwnPropertyNames(miCalculadora);
 
 window.addEventListener("DOMContentLoaded", (e)=> {
     e.preventDefault();
@@ -225,33 +343,10 @@ const createNumButton = (from,to)=> {
     };
 };
 
-/* crearElementoClaseId("body","div",`<div><h4>CASIO 1558</h4></div>`,"calc","nuevaCalculadora")
-crearElementoClaseId("#nuevaCalculadora","div",`<div class="pantallita"></div>`,"casioCalculator","casioCalcBody")
-createNumButton(0,9); */
-
-
-/* for (op of operaciones) {  
-    switch (op){
-        case "sumar": op = "+"
-        break;
-        case "restar": op = "-"
-        break;
-        case "multiplicar": op = "*"
-        break;
-        case "dividir": op = "/"
-        break;
-        case "clearAll": op = "CA"
-        break;
-        case "calcular": op = "="
-        break;
-    }
-    crearElementoClaseId("#casioCalcBody","div",`${op}`,"opBtn",`btn_${op}`)
-} */
-
-/* crearElementoClaseId(".pantallita","div","750","display","displayValor1");
-
-crearElementoClaseId(".pantallita","div","23","display","displayValor2"); */
-
 const test = document.getElementById("testArea");
 
+
+
+
 test.appendChild(miCalculadora.armarCalculadora());
+
