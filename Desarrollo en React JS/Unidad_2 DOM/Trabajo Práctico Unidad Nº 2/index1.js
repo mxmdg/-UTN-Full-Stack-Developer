@@ -22,12 +22,39 @@ const printTime = () => {
     setTimeout("printTime()", 1000)
 }
 
+// const sumar = (a,b)=>{
+//     let c = a + b;
+//     console.log(`${a} + ${b} = ${c}`)
+//     return c
+// }
+
+// const restar = (a,b)=>{
+//     let c = a - b;
+//     console.log(`${a} - ${b} = ${c}`)
+//     return c
+// }
+
+// const multiplicar = (a,b)=>{
+//     let c = a * b;
+//     console.log(`${a} * ${b} = ${c}`)
+//     return c
+// }
+
+// const dividir = (a,b)=>{
+//     let c = (b == 0)?"Error: No se puede dividir por 0":a/b;
+//     console.log(`${a} / ${b} = ${c}`)
+//     return c
+// }
+
+// const calcular = (a,b,operacion)=>{
+//     let c = operacion(a,b);
+//     return c
+// }
 
 class calculadora {
     constructor() {
         this.botonera = this.armarBotonera();
         this.operacion = "";
-        this.estado = ""
     }
 
     v1 = () => document.getElementById("dispValor1");
@@ -48,7 +75,6 @@ class calculadora {
                 console.log("No se escucha ningun evento porque " + e)
             }
         })
-        this.estado = "encendida"
         return cuerpo
     }
 
@@ -104,23 +130,21 @@ class calculadora {
     armarBotonera(){
         let botonera = document.createDocumentFragment();
         let numeros = this.createNumArr(0,10);
-        let operaciones = ["Pi","Ran","+","-","*","/","=","C","CA"];
+        let operaciones = ["+","-","*","/","=","C","CA"];
         let numBtn = this.crearBotones(numeros,"numBtn");
-        let decimal = this.crearBotones(["."],"numBtn")
         let opBtn = this.crearBotones(operaciones,"opBtn");
         botonera.appendChild(numBtn);
         botonera.appendChild(opBtn);
-     
         return botonera
     }
     
-    sumar (a = 0,b = 0) {
+    sumar (a,b) {
         let c = a + b;
         console.log(`${a} + ${b} = ${c}`)
         return c
     }
     
-    restar (a = 0,b = 0) {
+    restar (a,b) {
         let c = a - b;
         console.log(`${a} - ${b} = ${c}`)
         return c
@@ -149,21 +173,19 @@ class calculadora {
     }
 
     ingresarValores (btn) {
-        if (this.estado == "encendida") {
+        if (this.v1().innerHTML == "" && this.v2().innerHTML == "" && this.operacion == "") {
             this.v1().innerHTML += btn.textContent;
-        } else if (this.estado == "resuelto") {
+        } else if (this.v1().innerHTML !== "" && this.v2().innerHTML == "" && this.operacion !== "") {
             this.v1().innerHTML = "";
             this.v1().innerHTML += btn.textContent;
-            this.estado = "encendida";
         }
-        console.log(this.estado)
+
     }
     
     operar () {
         this.v2().innerHTML = this.v1().innerHTML;
         this.v1().innerHTML = "";
         console.log("Operar: ingresar otro valor")
-        //this.estado = "calulando"
     }
 
     calcular (a,b,operacion) {
@@ -189,10 +211,10 @@ class calculadora {
               // código a ejecutar si el operador es "/"
               this.mostrarResultado(this.calcular(this.v2().textContent, this.v1().textContent, this.dividir))
               break;
-            // default:
-            //   // código a ejecutar si el operador no es ninguno de los cuatro operadores básicos
-            //   this.v1().innerHTML = "ERROR"
-            //   break;
+            default:
+              // código a ejecutar si el operador no es ninguno de los cuatro operadores básicos
+              this.v1().innerHTML = "ERROR"
+              break;
           }
     }
     
@@ -200,7 +222,6 @@ class calculadora {
         this.v1().innerHTML = res;
         this.v2().innerHTML = "";
         this.operacion = "";
-        this.estado = "resuelto"
     }
 
 
@@ -215,30 +236,21 @@ class calculadora {
                 this.ingresarValores(btn)
                 
             })
-            document.addEventListener("keydown",(e)=>{
-                    console.log(e.key)
-                    if (e.key == btn.textContent) {
-                        e.preventDefault();
-                        this.ingresarValores(btn)
-                    } else if (e.key == "+" || e.key == "-" || e.key == "*" || e.key == "/") {
-                        if (this.v1().innerHTML !== "" && this.v2().innerHTML == "") {
-                            this.operar()
-                        }
-                        this.operacion = e.key
-                    } else if (e.key == "Enter") {
-                        if (this.v1().innerHTML !== ""){
-                            this.resolver();
-                        }
-                    } else if (e.key == "Backspace") {
-                        this.borrar()                        
-                    } else if (e.key == "Delete") {
-                        this.borrarTodo()
-                    }
-                
-            })
+            
         }
 
-        
+        document.addEventListener("keydown",(e)=>{  
+            console.log(e.key)
+            if (e.key == e.target.textContent) {
+                e.preventDefault();
+                this.ingresarValores(btn)
+            } else if (e.key == "+" || e.key == "-" || e.key == "*" || e.key == "/") {
+                this.operar()
+                this.operacion = e.key
+            } else if (e.key == "Enter") {
+                this.resolver();
+            }
+        })
 
         this.CA().addEventListener("click",(e)=>{
             e.preventDefault();
@@ -247,24 +259,19 @@ class calculadora {
 
         for (let i = 0; i < opBtn.length; i++) {
             opBtn[i].addEventListener("click",(e)=>{
-                e.preventDefault()
                 if (opBtn[i].textContent == "+" || opBtn[i].textContent == "-" || opBtn[i].textContent == "*" || opBtn[i].textContent == "/") {
-                    this.operar();
+                    (this.v2.innerHTML !== "")?this.operacion = (e.target.textContent):this.operar();
                     this.operacion = (e.target.textContent)
-                } else if (opBtn[i].textContent == "Pi"){
-                    this.v1().innerHTML = Math.PI
-                } else if (opBtn[i].textContent == "Ran"){
-                    this.v1().innerHTML = Math.floor(Math.random() * 1000)
+                    this.operar()
                 }
                 console.log(this.operacion)
+                
             })
         }
-
        this.C().addEventListener("click",(e)=>{
             e.preventDefault();
             this.borrar();
         })
-
         this.igual().addEventListener("click", (e)=>{
             this.resolver();
             console.log(this.operacion)
@@ -273,7 +280,7 @@ class calculadora {
 }
 
 const miCalculadora = new calculadora();
-// const operaciones = Object.getOwnPropertyNames(miCalculadora);
+const operaciones = Object.getOwnPropertyNames(miCalculadora);
 
 window.addEventListener("DOMContentLoaded", (e)=> {
     e.preventDefault();
@@ -345,8 +352,4 @@ const createNumButton = (from,to)=> {
 
 const test = document.getElementById("testArea");
 
-
-
-
 test.appendChild(miCalculadora.armarCalculadora());
-
