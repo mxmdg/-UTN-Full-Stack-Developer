@@ -59,9 +59,6 @@ class calculadora {
                 console.log("No se escucha ningun evento porque " + e)
             }
         })
-
-
-       
         
         this.estado = "apagada"
         return cuerpo
@@ -70,30 +67,37 @@ class calculadora {
     encender = () => {
         this.estado = "encendida";
         this.escucharEventos()
-        this.v1().innerHTML = ""
+        this.v1().innerHTML = "";
+        this.OFF().addEventListener("click",()=>{ 
+            if (this.estado="encendida") {
+                this.apagar()
+            }
+        }) 
         console.log("Calculadora " + this.estado)
+        this.v1().parentElement.parentElement.classList.remove("apagada")
     }
 
     apagar = () => {
         this.estado = "apagada";
-        this.v1().innerHTML = "OFF";
-        document.removeEventListener("keydown",(e)=>{console.log("Evento removido " + e)})
-        let numBtn = document.getElementsByClassName("numBtn");
-       
-        for (let btn of numBtn) {
-            btn.removeEventListener("click",(e)=>{
-                console.log("Evento removido " + e)
-            })   
-        }
-
+        const calcOff = this.v1().parentElement.parentElement;
+        const calcClone = calcOff.cloneNode(true)
+        calcClone.classList.add("apagada")
+        calcOff.parentNode.replaceChild(calcClone,calcOff)
+        this.v1().innerHTML = "OFF"
+        document.removeEventListener("keydown", this.tecladoInput);
         console.log("calculadora " + this.estado)
+        this.ON().addEventListener("click",(e)=>{
+            if (this.estado == "apagada"){
+                this.encender()
+            }
+        })
     }
 
     
 
     cuerpo = ()=> {
         const cuerpo = document.createElement("div");
-        cuerpo.classList.add("calc")
+        cuerpo.classList.add("calc", "apagada")
         return cuerpo
     }
 
@@ -187,12 +191,12 @@ class calculadora {
         this.v1().innerHTML = this.v1().innerHTML.slice(0, (this.v1().innerHTML.length -1) ); 
     }
 
-    ingresarValores (btn) {
+    ingresarValores (valor) {
         if (this.estado == "encendida") {
-            this.v1().innerHTML += btn.textContent;
+            this.v1().innerHTML += valor;
         } else if (this.estado == "resuelto") {
             this.v1().innerHTML = "";
-            this.v1().innerHTML += btn.textContent;
+            this.v1().innerHTML += valor;
             this.estado = "encendida";
         }
         console.log(this.estado)
@@ -242,6 +246,27 @@ class calculadora {
         this.estado = "resuelto"
     }
 
+    tecladoInput = (e)=>{
+        console.log(e.key)
+        if (e.key >= 0 && e.key < 10 ) {
+            this.ingresarValores(e.key)
+        } else if (e.key == "+" || e.key == "-" || e.key == "*" || e.key == "/") {
+            if (this.v1().innerHTML !== "" && this.v2().innerHTML == "") {
+                this.operar()
+            }
+            this.operacion = e.key
+        } else if (e.key == "Enter") {
+            if (this.v1().innerHTML !== ""){
+                this.resolver();
+            }
+        } else if (e.key == "Backspace") {
+            this.borrar()                        
+        } else if (e.key == "Delete") {
+            this.borrarTodo()
+        }
+    
+    }
+
     escucharEventos() {
         let numBtn = document.getElementsByClassName("numBtn");
         let opBtn = document.getElementsByClassName("opBtn");
@@ -249,30 +274,10 @@ class calculadora {
         for (let btn of numBtn) {
             btn.addEventListener("click",(e)=>{
                 e.preventDefault();
-                this.ingresarValores(btn)
+                this.ingresarValores(btn.textContent)
                 
             })
-            document.addEventListener("keydown",(e)=>{
-                    console.log(e.key)
-                    if (e.key == btn.textContent) {
-                        e.preventDefault();
-                        this.ingresarValores(btn)
-                    } else if (e.key == "+" || e.key == "-" || e.key == "*" || e.key == "/") {
-                        if (this.v1().innerHTML !== "" && this.v2().innerHTML == "") {
-                            this.operar()
-                        }
-                        this.operacion = e.key
-                    } else if (e.key == "Enter") {
-                        if (this.v1().innerHTML !== ""){
-                            this.resolver();
-                        }
-                    } else if (e.key == "Backspace") {
-                        this.borrar()                        
-                    } else if (e.key == "Delete") {
-                        this.borrarTodo()
-                    }
-                
-            })
+            document.addEventListener("keydown", this.tecladoInput);
         }
 
         
