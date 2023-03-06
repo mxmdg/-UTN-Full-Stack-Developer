@@ -28,6 +28,7 @@ class calculadora {
         this.botonera = this.armarBotonera();
         this.operacion = "";
         this.estado = "apagada"
+        this.nombre = "MXM3000"
     }
 
     v1 = () => document.getElementById("dispValor1");
@@ -40,6 +41,7 @@ class calculadora {
     
     armarCalculadora = ()=> {
         const cuerpo = (this.cuerpo());
+        this.grabarNombre(cuerpo)
         cuerpo.appendChild(this.display());
         cuerpo.appendChild(this.armarBotonera());
         document.addEventListener("DOMContentLoaded", (e)=>{
@@ -62,6 +64,10 @@ class calculadora {
         
         this.estado = "apagada"
         return cuerpo
+    }
+
+    grabarNombre = (cont) => {
+        crearElementoClaseId(cont,"div",`<h3>${this.nombre}</h3>`,"grabado")
     }
 
     encender = () => {
