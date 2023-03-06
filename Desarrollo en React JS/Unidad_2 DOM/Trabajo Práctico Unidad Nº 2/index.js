@@ -1,3 +1,5 @@
+//Clock
+
 const twoDigits = (x) => {
     let z = new String(x);
     (z.length == 1)?(z = '0' + x):(z=new String(x));
@@ -322,7 +324,10 @@ class calculadora {
 }
 
 const miCalculadora = new calculadora();
-// const operaciones = Object.getOwnPropertyNames(miCalculadora);
+
+const test = document.getElementById("testArea");
+
+test.appendChild(miCalculadora.armarCalculadora());
 
 window.addEventListener("DOMContentLoaded", (e)=> {
     e.preventDefault();
@@ -380,22 +385,4 @@ function crearElementoClaseId (contenedor, etiqueta, contenido, clase, id) {
 };
 
 
-const createNumButton = (from,to)=> {
-    let nums = []
-    for (let i = from; i < to; i++){
-        try {
-            crearElementoClaseId("#casioCalcBody","div",`${i}`,"numBtn",`btn_${i}`);
-        } catch (err) {
-            console.log(err)
-        }
-      
-    };
-};
-
-const test = document.getElementById("testArea");
-
-
-
-
-test.appendChild(miCalculadora.armarCalculadora());
 
