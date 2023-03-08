@@ -107,6 +107,7 @@ class calculadora {
     cuerpo = ()=> {
         const cuerpo = document.createElement("div");
         cuerpo.classList.add("calc", "apagada")
+        cuerpo.id = this.nombre
         return cuerpo
     }
 
@@ -368,8 +369,60 @@ function crearElementoClaseId (contenedor, etiqueta, contenido, clase, id) {
     };
 };
 
+// Funcion para arrastrar y soltar
+
+function moverVentana(ventana) {
+	const dragObject = document.querySelector(`${ventana}`);
+	//const dragZone = document.querySelector(`${barra}`);
+
+	dragObject.onmousedown = function(event) {
+		let shiftX = event.clientX - dragObject.getBoundingClientRect().left+20;
+		let shiftY = event.clientY - dragObject.getBoundingClientRect().top+20;
+
+		dragObject.classList.add("agarrado");
+
+		moveAt(event.pageX, event.pageY);
+
+		function moveAt(pageX, pageY) {
+			dragObject.style.left = pageX - shiftX + 'px';
+			dragObject.style.top = pageY - shiftY + 'px';
+		}
+
+		function onMouseMove(event) {
+			moveAt(event.pageX, event.pageY);
+		}
+
+		document.addEventListener('mousemove', onMouseMove);
+
+		dragObject.onmouseup = function() {
+			document.removeEventListener('mousemove', onMouseMove);
+			dragObject.onmouseup = null
+			dragObject.classList.remove("agarrado");
+		};
+
+		document.onmouseup = function() {
+            document.removeEventListener('mousemove', onMouseMove);
+            dragObject.onmouseup = null;
+            dragObject.classList.remove("agarrado");
+          };
+
+	
+	};
+
+	dragObject.onDragStart = function(){
+		return 
+	};
+}
+
+
 // Probar calculadora completa
 
-// const test = document.getElementById("testArea");
+const test = document.getElementById("testArea");
 
-// test.appendChild(miCalculadora.armarCalculadora());
+test.appendChild(miCalculadora.armarCalculadora());
+
+moverVentana("#clock");
+
+moverVentana("#calc")
+
+moverVentana(`#${miCalculadora.nombre}`)

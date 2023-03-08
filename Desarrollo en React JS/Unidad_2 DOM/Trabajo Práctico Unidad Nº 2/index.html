@@ -19,22 +19,19 @@
 
     </head>
     <body onload="printTime()">
-        <div class="clockContainer">
-            <section class="calc" id="clock"></section>
+        <div class="calc clockContainer" id="clock"></div>
+        <div class="calc" id="calc">
+            <input type="number" id="valor1">
+            <input type="number" id="valor2">
+            <div id="operaciones tecladito">
+                <button id="sumar">+</button>
+                <button id="restar">-</button>
+                <button id="multiplicar">*</button>
+                <button id="dividir">/</button>
+            </div>
+            <div id="resultado"></div>
         </div>
-        <div class="calcContainer">
-            <section class="calc" id="calc">
-                <input type="number" id="valor1">
-                <input type="number" id="valor2">
-                <div id="operaciones tecladito">
-                    <button id="sumar">+</button>
-                    <button id="restar">-</button>
-                    <button id="multiplicar">*</button>
-                    <button id="dividir">/</button>
-                </div>
-                <div id="resultado"></div>
-            </section>
-        </div>
+        
         <div id="testArea"></div>
         
         

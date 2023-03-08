@@ -1,5 +1,5 @@
 body {
-    background-color: #333;
+    background-image: url(./img/desktop-1920x1080.jpg);
 }
 
 #resultado {
@@ -17,9 +17,7 @@ body {
 .clockContainer{
     width: 85px;
     height: 30px;
-    left: 0;
-    right: 0;
-    top: 0150px;
+    top: 0;
     right:0;
     margin: auto;
     color:#000;
@@ -33,6 +31,7 @@ body {
 }
 
 .calc {
+    position: absolute;
     display: flex;
     flex-direction: column;
     border: 1px solid white;
@@ -40,11 +39,16 @@ body {
     padding: 25px;
     margin: 20px;
     border-radius: 10px;
-    background-color: #21D4FD;
-    /* background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%); */
+    background-color: #88888866;
     background-image: url(https://thumbs.dreamstime.com/b/fondo-de-aluminio-de-la-textura-23313511.jpg);
+    backdrop-filter: blur(3px);
     box-shadow: 7px 8px 10px #00000099;
-    transition: all .7s;
+    transition: box-shadow .7s;
+}
+
+.agarrado {
+    box-shadow: 15px 15px 15px #000;
+    z-index: 2;
 }
 
 .calc h4 {
@@ -84,7 +88,8 @@ body {
 .pantallita{
     grid-area: 1 / 1 / 2 / 4;
     border:#ddd 1px solid;
-    background: linear-gradient(0deg, rgba(3,3,3,1) 0%, rgba(34,34,34,1) 20%, rgba(17,17,17,1) 93%, rgba(0,0,0,1) 100%);
+    background: linear-gradient(0deg, rgba(3,3,3,.8) 100%, rgba(34,34,34,.8) 93%, rgba(17,17,17,.8) 43%, rgba(0,0,0,.8) 100%);
+    backdrop-filter: blur(5px);
     border-radius: 5px;
     height: 45px;
     text-align: right;
@@ -94,6 +99,13 @@ body {
     line-height: 20px;
     padding: 2px;
     align-content: space-around;
+}
+
+.mask {
+    height: 45px;
+    line-height: 20px;
+    padding: 2px;
+    clip-path: inset();
 }
 
 .grabado {
@@ -109,7 +121,8 @@ body {
     grid-auto-flow: dense;
     width: 40px;
     height: 40px;
-    background: url(https://th.bing.com/th/id/OIP.fLRZaoiLnZylDtC5qq8J-QHaHa?pid=ImgDet&rs=1);
+    /* background: url(https://th.bing.com/th/id/OIP.fLRZaoiLnZylDtC5qq8J-QHaHa?pid=ImgDet&rs=1); */
+    background: #000000aa;
     border-radius: 5px;
     font-weight: 900;
     font-size: 17px;
@@ -122,11 +135,20 @@ body {
     
 }
 
+/* #MXM3000{
+    clip-path: polygon(0% 0%, 0% 100%, 9% 100%, 9% 21%, 91% 21%, 91% 30%, 9% 30%, 9% 100%, 100% 100%, 100% 0%);
+
+} */
+
 .apagada{
+    top: 30vh;
+    right:0;
     background-image: none;
-    background-color: #333;
+    background-color: #33333399;
     box-shadow: 1px 1px 2px #000;
-    transition: all .7s;
+    transition: box-shadow .7s;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(5px);
 }
 
 .numBtn:hover, .opBtn:hover {
@@ -159,7 +181,7 @@ body {
 }
 
 #btn_C, #btn_CA {
-    color: #c30;
+    color: #f00;
 }
 
 /* #btn_\+ {
