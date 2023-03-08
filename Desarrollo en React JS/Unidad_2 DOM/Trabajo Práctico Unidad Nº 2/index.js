@@ -59,13 +59,15 @@ class calculadora {
                     if (this.estado="encendida") {
                         this.apagar()
                     }
-                })              
+                })
+                moverVentana(`#${this.nombre}`)              
             } catch (e) {
                 console.log("No se escucha ningun evento porque " + e)
             }
         })
         
         this.estado = "apagada"
+        
         return cuerpo
     }
 
@@ -425,4 +427,3 @@ moverVentana("#clock");
 
 moverVentana("#calc")
 
-moverVentana(`#${miCalculadora.nombre}`)
