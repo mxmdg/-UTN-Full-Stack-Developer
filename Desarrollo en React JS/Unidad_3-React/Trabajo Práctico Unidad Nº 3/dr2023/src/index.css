@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Hairline&family=Carter+One&family=Fugaz+One&family=Lobster&family=Work+Sans:ital,wght@0,100;0,200;0,300;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/*
+font-family: 'Carter One', cursive;
+  font-family: 'Fugaz One', cursive;
+  font-family: 'Lobster', cursive;
+  font-family: 'Work Sans', sans-serif;
+*/
+
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.App {
+  background-image: linear-gradient(15deg, #459900, #aeea00 );
+  margin: 0;
+  padding: 20px;
+  height: 95vh;
+}
+
+.App h1 {
+  font-family: 'Lobster', cursive;
+  color: yellow;
+  font-size: 6rem;
+  rotate: -10deg;
+  text-shadow: 5px 10px 5px #a09;
+}
+
+.App section {
+  display: grid;
+  gap: 020px;
+  grid-template-columns: repeat(auto-fill, 200px);
+  width: 64vw;
+  margin:auto;
+  text-align: left;
+  justify-content: center;
+}
+
+
+.App h3 {
+  font-family: 'Carter One', cursive;
+  color:#a09;
+  text-align: center;
+  font-size: 1.5rem;
+  line-height: 1.2rem;
+  margin: 15px;
+}
+
+.App p {
+  margin: 10px;
+  text-align: center;
+}
+
+.NavBar{
+  display: flex;
+  width: 32vw;
+  min-width: max-content;
+  background-image: linear-gradient(to left,#aeea0000 10%,#aeea00,#aeea0000 90%);
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  padding: 15px;
+  margin:auto;
+  margin-bottom: 50px;
+  justify-content: space-around;
+}
+
+.NavBar div {
+  flex-direction: row;
+  text-decoration: none;
+  font-family: 'Fugaz One', cursive;
+  font-size: 1.5rem;
+  color: #a09;
+  transition: color .5s ease-out;
+}
+
+.NavBar div:hover {
+  color:#234500;
+  transition: color .5s ease-out;
+}
+
+.Productos {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 200px;
+  height: 350px;
+  background-image: linear-gradient(#ea9, #eee 20%);
+  border: 3px solid #eee;
+  border-radius: 5px;
+  box-shadow: 10px 10px 7px #00000022;
+  transition: border-color .5s ease-out;
+}
+
+.Productos img {
+  width:170px;
+  max-width: 100%;
+}
+
+.Productos:hover {
+  border-color:#ea9;
+  transition: border-color 0.7s ease-in;
+}
+
+.Footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  width: 100vw;
+  flex-direction: row;
+  justify-content: center;
+  background-color: #234500;
+  margin: 0;
+}
+
+.Footer ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.Footer li {
+  margin: 10px;
+  list-style-type: none;
+  font-family: 'Fugaz One';
+  color:#aeea00;
+}

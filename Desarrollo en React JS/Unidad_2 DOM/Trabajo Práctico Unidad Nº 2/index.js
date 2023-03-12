@@ -102,6 +102,7 @@ class calculadora {
                 this.encender()
             }
         })
+        moverVentana(`#${this.nombre}`) 
     }
 
     
@@ -311,6 +312,8 @@ class calculadora {
 
 const miCalculadora = new calculadora();
 
+miCalculadora.nombre = "casio-3600";
+
 // Trabajo Practico
 
 window.addEventListener("DOMContentLoaded", (e)=> {
@@ -380,7 +383,7 @@ function moverVentana(ventana) {
 	dragObject.onmousedown = function(event) {
 		let shiftX = event.clientX - dragObject.getBoundingClientRect().left+20;
 		let shiftY = event.clientY - dragObject.getBoundingClientRect().top+20;
-
+        event.stopPropagation();
 		dragObject.classList.add("agarrado");
 
 		moveAt(event.pageX, event.pageY);
@@ -420,6 +423,7 @@ function moverVentana(ventana) {
 // Probar calculadora completa
 
 const test = document.getElementById("testArea");
+
 
 test.appendChild(miCalculadora.armarCalculadora());
 

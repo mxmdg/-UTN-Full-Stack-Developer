@@ -43,12 +43,15 @@ body {
     background-image: url(https://thumbs.dreamstime.com/b/fondo-de-aluminio-de-la-textura-23313511.jpg);
     backdrop-filter: blur(3px);
     box-shadow: 7px 8px 10px #00000099;
-    transition: box-shadow .7s;
+    transition: box-shadow .7s, scale 1s;
+    user-select: none;
 }
 
 .agarrado {
     box-shadow: 15px 15px 15px #000;
+    scale: 104%;
     z-index: 2;
+    transition: scale .7s;
 }
 
 .calc h4 {

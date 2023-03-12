@@ -1,0 +1,7 @@
+const Frutas = [{Nombre: "banana" , Descripcion: "Importada de Ecuador", Precio: 250, Unidad: "kg", SKU: 1001, Stock: 30, Ruta: "https://pics.clipartpng.com/midle/Bunch_of_Bananas_PNG_Clipart-213.png"},
+{Nombre: "Manzana" , Descripcion: "Roja de Rio Negro", Precio: 300, Unidad: "kg", SKU: 1002, Stock: 25, Ruta: "https://www.pngplay.com/wp-content/uploads/6/Half-Apple-PNG.png"},
+{Nombre: "Naranja" , Descripcion: "Jugosa, ideal exprimido", Precio: 150, Unidad: "kg", SKU: 1003, Stock: 35, Ruta: "https://pics.clipartpng.com/midle/Orange_Slice_PNG_Clipart-236.png"},
+{Nombre: "Mandarina" , Descripcion: "Criolla, ducle y sabrosa", Precio: 200, Unidad: "kg", SKU: 1004, Stock: 35, Ruta: "https://img3.freepng.es/dy/2a7dd38851b07672842561967ae3d1a5/L0KzQYm4UsA0N6h1gJH0aYP2gLBuTfp2cZRqRdH7YX7qdX77gf5obaNuhtc2ZnzkhrF5TgN1d5RwReJxb4Tyd8PokPh6NWZoSKcENEG8RIPtUcU4NmM8SaQ9NUK1QYa7U8g3QWU7TaQCNEKxgLBu/kisspng-juice-orange-tangerine-flavor-stock-photography-5c05941942f157.2712452215438694652742.png"},
+{Nombre: "Pera" , Descripcion: "Super Oferta Fin de temporada", Precio: 100, Unidad: "kg", SKU: 1005, Stock: 15, Ruta: "https://pics.clipartpng.com/midle/Three_Pears_PNG_Clipart-262.png"}]
+
+export default Frutas
