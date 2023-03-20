@@ -80,12 +80,17 @@ function crearDocFrag(contenedor,etiqueta,contenido,id) {
         container = contenedor;
         console.log("El parametro no se puede seleccionar con query selector")
     }
-
-    console.log(contenedor)
     
     let textContainer = document.createElement(etiqueta);
     textContainer.innerHTML = contenido;
-    container.appendChild(textContainer);
+    try {
+        container.appendChild(textContainer);
+    } catch(e) {
+        console.log(container)
+        console.log(textContainer)
+        console.log(e)
+    }
+    
     if (id !== undefined) {
         container.lastElementChild.setAttribute("id", id)
     };
@@ -116,7 +121,7 @@ function createSelector(arr) {
         return select;
 
     } catch (e) {
-        alert('No se puede crear un selector con estos datos.')
+        alert('No se puede crear un selector con estos datos. Se necesita el siguiente modelo de datos { opcion1 : valor1 , opcion2 : valor2')
         console.log(e)
     }
     
@@ -506,4 +511,13 @@ window.addEventListener('load', (e) => {
         ]
         
     })
+
+    const mandarSaludo = ()=>alert("Hola Puto")
+
+    let opciones = [{Opcion1 : "Valor1"},{Opcion2 : "Valor2" , opcion3: "Valor3"}]
+
+    createForm("#navBar",opciones,mandarSaludo)
+
+    
 })
+

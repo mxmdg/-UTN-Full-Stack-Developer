@@ -3,8 +3,8 @@ import Tablero from './Tablero.jsx';
 function App() {
   return (
     <div className="App">
-      <h2>Federacion Internacional de Basquet</h2>
-      <Tablero> Final USA 2024 </Tablero>
+      <h2>FIBA.Basketball</h2>
+      <Tablero>World Cup 2024</Tablero>
     </div>
   );
 }

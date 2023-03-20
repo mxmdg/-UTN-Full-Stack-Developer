@@ -3,7 +3,7 @@ import { Component } from "react";
 class Equipo extends Component {
   
   constructor(props) {
-    super(props);
+    super();
   }
   render() {
     return (
@@ -11,7 +11,7 @@ class Equipo extends Component {
           <h3>{this.props.Localia}</h3> 
           <h1>{this.props.Puntos}</h1>
           <h2>{this.props.Pais}</h2>
-          <img className='img_sel' src={this.props.bandera} alt="" />
+          <img className='img_sel' src={this.props.bandera} alt={this.props.Pais} />
           
       </div>
     )
