@@ -1,22 +1,26 @@
-let Register = [{
-    inputName: 'Nombre',
-    type: 'Text'},
-    {inputName: 'Apellido',
-    type: 'Text'},
+let Register = [
     {
-    inputName: 'Email',
-    type: 'Text',
-   },
-    {inputName: 'Telefono',
-    type: 'Number',
-   }
-    ,
+        inputName: 'Nombre',
+        type: 'Text'
+    },
     {
-    inputName: 'Contraseña',
-    type: 'password',
-   },
-    {inputName: 'Confirmar Contraseña',
-    type: 'password',
+        inputName: 'Apellido',
+        type: 'Text'},
+    {
+        inputName: 'Email',
+        type: 'email',
+    },
+    {
+        inputName: 'Telefono',
+        type: 'tel',
+    },
+    {
+        inputName: 'Contraseña',
+        type: 'password',
+    },
+    {
+        inputName: 'Confirmar Contraseña',
+        type: 'password',
     }
 ]
 

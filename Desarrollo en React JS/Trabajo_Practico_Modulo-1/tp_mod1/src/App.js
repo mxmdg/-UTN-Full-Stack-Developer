@@ -15,7 +15,9 @@ function App() {
 
   const selectForm = (f)=> {
     setForm(f)
-  }
+  } 
+
+  const resetForms = ()=>setForm('');
 
   return (
     <div className="App">
@@ -27,7 +29,7 @@ function App() {
           ) : (
             <div className="nodal">
               <div className="formContainer">
-                <Form form={form} selectForm={selectForm}/>
+                <Form form={form} selectForm={selectForm} resetForms={resetForms}/>
               </div>
             </div>
           )}

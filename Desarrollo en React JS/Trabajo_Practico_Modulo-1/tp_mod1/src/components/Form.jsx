@@ -1,4 +1,6 @@
 import Input from './Input'
+import Select from './Select'
+import Button from './Button'
 import Register from './Register'
 import Seg_Auto from './Seg_Auto'
 import Seg_Vida from './Seg_Vida'
@@ -28,10 +30,13 @@ const Form = (props)=> {
             dataForm = Seg_Hogar
             break;
         case "Ingresar": 
-                title = "Usuario y contraseña"
+                title = "Credenciales"
                 dataForm = Ingresar
                 break;           
-        default:
+        default: 
+                title = "Credenciales"
+                dataForm = Ingresar
+                break; 
             break;
     }
     
@@ -44,30 +49,21 @@ const Form = (props)=> {
                 e.preventDefault()
                 return value=e.target.value
             }  
-          return (
-            <div>
-                 <label>{inp.inputName}</label>
-                    <select onChange={changeHandler}>
-                        <option>Elija una opcion</option>
-                        {inp.options.map((option) => (
-                        <option value={option.value}>{option.text}</option>
-                ))}
-            </select>
-            <div className='value' id={inp.inputName + "_id"}>{value}</div>
-            </div>
-            
-          );
+          return <Select inputName={inp.inputName} type={inp.type} value={value} changeHandler={changeHandler} options={inp.options}></Select>
+        } else if (inp.type === "button"){
+            return <Button inputName={inp.inputName} type={inp.type} selectForm={props.selectForm} id={"Register"}></Button>
         } else {
           return <Input inputName={inp.inputName} type={inp.type}></Input>;
         }
       };
 
     return <div>
-            <h2>Solicitud de {title}</h2>
+            <div className={"close_btn"} onClick={props.resetForms}><p>X</p></div>
+            <h2>Solicitar {title}</h2>
             <form>
                 {dataForm.map((inp)=> typeOfInput(inp))}
                 <button id="submitBTN" type="submit">Enviar</button>
-                <button id="cancelBTN" type="cancel">Cancelar</button>
+                <button id="cancelBTN" type="cancel">Cancelar</button>                
             </form>
             </div>
             

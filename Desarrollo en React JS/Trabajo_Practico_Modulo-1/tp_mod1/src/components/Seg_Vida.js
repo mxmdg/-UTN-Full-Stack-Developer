@@ -7,11 +7,11 @@ let Seg_Vida = [{
         type: 'Text'},
     {
         inputName: 'Email',
-        type: 'Text',
+        type: 'email',
     },
     {
         inputName: 'Telefono',
-        type: 'Number',
+        type: 'tel',
     },
     {
         inputName: 'Fecha de Nacimiento',

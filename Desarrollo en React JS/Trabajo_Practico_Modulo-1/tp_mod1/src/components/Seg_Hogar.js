@@ -8,11 +8,11 @@ let Seg_Hogar = [{
     },
     {
         inputName: 'Email',
-        type: 'Text',
+        type: 'email',
     },
     {
         inputName: 'Telefono',
-        type: 'Number',
+        type: 'tel',
     },
     {
         inputName: 'Tipo de inmueble',
