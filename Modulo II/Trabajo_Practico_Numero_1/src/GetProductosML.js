@@ -1,5 +1,6 @@
 import { useState , useEffect} from 'react'
 import Productos from './Productos'
+import './index.css'
 
 
 
@@ -26,7 +27,7 @@ const GetProductosML = ()=> {
 
    const onChangeHandler = (e)=>{
         e.preventDefault(e)
-        
+        setLoading(true)
         setSearch(e.target.value)
    }
 
@@ -35,7 +36,7 @@ const GetProductosML = ()=> {
     } else {
         return <section>
             <div>
-                <input type='search' onBlur={onChangeHandler}/>
+                <input className='inputSearch' type='search' onBlur={onChangeHandler} placeholder='Buscar'/>
             </div>
         {useProductos.map((fruta) => (<Productos
             Nombre={fruta.seller.nickname}

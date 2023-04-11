@@ -108,6 +108,29 @@ code {
   transition: all .5s ease-out;
 }
 
+.inputSearch {
+  background-color: var(--color1);
+  border: 2px solid var(--color4);
+  box-shadow: 5px 5px 5px #00000077;
+  border-radius: 30px;
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 600;
+  font-size: 1em;
+  text-transform: uppercase;
+  color: var(--color3);
+  text-align: center;
+  padding: 15px;
+  margin: 15px;
+}
+
+.inputSearch::placeholder {
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 600;
+  color: var(--color5);
+  font-size: 1em;
+  text-transform: uppercase;
+}
+
 .Productos {
   display: flex;
   flex-direction: column;
