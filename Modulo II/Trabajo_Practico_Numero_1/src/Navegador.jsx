@@ -1,10 +1,14 @@
+import {Link } from 'react-router-dom'
+
 function Navegador(){
     return (<div>
             <div className="NavBar">
-                <div href="#">Home</div>
-                <div href="#">Frutas</div>
-                <div href="#">Verduras</div>
-                <div href="#">Contacto</div>
+                
+                    <Link to="/" >Home</Link>
+                    <Link id='Frutas' to='/frutas'>Frutas</Link>
+                    <Link id='ProductosML' to='/productosML'>Productos en Mercado Libre</Link>
+                    <Link id='contacto' to='/contacto'>Contacto</Link>
+                
             </div>
         </div>)
 

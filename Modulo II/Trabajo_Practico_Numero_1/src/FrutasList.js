@@ -11,7 +11,7 @@ import frutilla from './img/Frutilla.png'
 import anana from './img/Anana.png'
 import ciruela from './img/Ciruela.png'
 
-const Frutas = [{Nombre: "banana" , Descripcion: "Importada de Ecuador", Precio: 250, Unidad: "kg", SKU: 1001, Stock: 30, Ruta: banana},
+const FrutasList = [{Nombre: "banana" , Descripcion: "Importada de Ecuador", Precio: 250, Unidad: "kg", SKU: 1001, Stock: 30, Ruta: banana},
 {Nombre: "Manzana" , Descripcion: "Roja de Rio Negro", Precio: 300, Unidad: "kg", SKU: 1002, Stock: 25, Ruta: manzana},
 {Nombre: "Naranja" , Descripcion: "Jugosa, ideal exprimido", Precio: 150, Unidad: "kg", SKU: 1003, Stock: 35, Ruta: naranja},
 {Nombre: "Mandarina" , Descripcion: "Criolla, ducle y sabrosa", Precio: 200, Unidad: "kg", SKU: 1004, Stock: 35, Ruta: mandarina},
@@ -24,4 +24,4 @@ const Frutas = [{Nombre: "banana" , Descripcion: "Importada de Ecuador", Precio:
 {Nombre: "Anana" , Descripcion: "La dulzura de la playa", Precio: 420, Unidad: "u.", SKU: 1011, Stock: 5, Ruta: anana},
 {Nombre: "Ciruela" , Descripcion: "Si esta ácida, te devolvemos tu dinero", Precio: 450, Unidad: "kg", SKU: 1012, Stock: 10, Ruta: ciruela}]
 
-export default Frutas
+export default FrutasList
