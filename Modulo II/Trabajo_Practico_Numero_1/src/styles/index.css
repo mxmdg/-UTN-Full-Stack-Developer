@@ -1,0 +1,452 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Hairline&family=Carter+One&family=Fugaz+One&family=Lobster&family=Work+Sans:ital,wght@0,100;0,200;0,300;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/*
+font-family: 'Carter One', cursive;
+  font-family: 'Fugaz One', cursive;
+  font-family: 'Lobster', cursive;
+  font-family: 'Work Sans', sans-serif;
+*/
+:root {
+  --color1: #ff6464;
+  --color2: #ffbd67;
+  --color3: #f8fe85;
+  --color4: #5be7a9;
+  --color5: #eae2b7;
+  --color11: #ffbd67aa;
+  --color13: #f8fe8599;
+  --color22: #ff646499;
+  --color31: #5be7a9aa;
+  --color33: #f8fe8533;
+  --color39: #f8fe8511;
+  height: 100vh;
+  box-sizing: content-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0;
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.App, .mainContainer {
+  background-image: linear-gradient(15deg, var(--color2), var(--color3) );
+  margin: 0;
+  padding: 0;
+}
+
+.App h1 {
+  font-family: 'Lobster', cursive;
+  color: var(--color1);
+  font-size: 6rem;
+  rotate: -7deg;
+  text-shadow: 15px 20px 15px var(--color11);
+  margin: 0;
+  padding:10px;
+}
+
+.mainContainer {
+  display: grid;
+  box-sizing:content-box;
+  grid-auto-flow: dense;
+  gap: 020px;
+  padding-top: 50px;
+  padding-bottom: 100px;
+  grid-template-columns: repeat(auto-fill, 250px);
+  width: 100vw;
+  min-height: 45vh;
+  margin:auto;
+  text-align: left;
+  justify-content: center;
+}
+
+.mainContainer h3{
+  font-family: 'Carter One', cursive;
+  max-width: 100%;
+  overflow: hidden;
+  color:var(--color3);
+  text-align: center;
+  font-size: auto;
+  line-height: 1.6rem;
+  margin: 15px;
+  transform: rotate(-7deg);
+}
+
+.mainContainer p {
+  margin: 10px;
+  text-align: center;
+  background-image: url('https://megaverde.com.ar/wp-content/uploads/2019/06/sydney-rae-668606-unsplash-scaled.jpg');
+}
+
+.homeContainer {
+  box-sizing: border-box;
+  display: flex;
+  justify-items: flex-start;
+  grid-column: 1 / span 4;
+  margin: 0;
+  background-image: linear-gradient(0deg, var(--color4), var(--color1) );
+  padding: 30px;
+  border-radius: 25px;
+}
+
+.homeContainer h2{
+  font-family: 'Carter One', cursive;
+  font-size: 4em;
+  line-height: 1.1em;
+  text-align: center;
+  color: var(--color3);
+  transform: rotate(-7deg);
+}
+
+.NavBar{
+  display: flex;
+  width: 80vw;
+  min-width: max-content;
+  background-image: linear-gradient(to left,var(--color39) 10%, var(--color2), var(--color39) 90%);
+  border-top: 1px solid var(--color4);
+  border-bottom: 1px solid var(--color4);
+  padding: 15px;
+  margin:auto;
+  justify-content: space-around;
+}
+
+.NavBar div, .NavBar a {
+  flex-direction: row;
+  text-decoration: none;
+  font-family: 'Fugaz One', cursive;
+  font-size: 1.5rem;
+  color: var(--color1);
+  transition: all .2s ease-out;
+  z-index: 15;
+}
+
+.NavBar a:hover {
+  color: var(--color4);
+  scale: 1.1;
+  transition: all .5s ease-out;
+}
+
+.inputSearch {
+  background-color: var(--color1);
+  border: 2px solid var(--color4);
+  box-shadow: 5px 5px 5px #00000077;
+  border-radius: 30px;
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 600;
+  font-size: 1em;
+  text-transform: uppercase;
+  color: var(--color3);
+  text-align: center;
+  height: 53px;
+  padding: 15px;
+  margin: 15px;
+}
+
+.inputSearch::placeholder {
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 600;
+  color: var(--color5);
+  font-size: 1em;
+  text-transform: uppercase;
+}
+
+.centerOnGrid {
+  grid-column: 3 / span 1;
+}
+
+.Productos {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: center;
+  background: var(--color4);
+  border: 1px solid var(--color4);
+  border-radius: 20px;
+  padding: 20px ;
+  box-shadow: 10px 10px 7px #00000022;
+  transition: border-color .5s ease-out;
+}
+
+.Productos div {
+  width: 100%;
+  text-align: center;
+}
+
+.Productos img {
+  width:170px;
+  object-fit: scale-down;
+  object-position: center;
+}
+
+.Productos h4 {
+  text-align: center;
+  background-color: var(--color3);
+  color:var(--color1);
+  padding: 5px;
+  margin: 0px;
+  padding-top:5px;
+}
+
+.Productos:hover {
+  border-color: var(--color1);
+  transition: border-color 0.4s ease-in;
+}
+
+.Productos table {
+  font-size: .9em;
+  line-height: .9em;
+  width: 100%;
+  padding: 5px 10px 5px 10px;
+  background-color: var(--color2);
+}
+
+.Productos th {
+  width: 40%;
+  font-weight: 500;
+  text-align: left;
+}
+
+.Productos td {
+  width: 60%;
+  font-weight: 700;
+  text-align: left;
+}
+
+.imgContainer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.imgContainer a {
+  display: block;
+  background-color: var(--color1);
+  padding: 5px;
+  border-radius: 20px;
+  border: 1px solid var(--color3);
+  margin: 10px;
+  font-family: 'Work Sans', sans-serif;
+  font-size: .8em;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: var(--color3);
+}
+
+.imgContainer a:hover {
+  background-color: var(--color3);
+  color: var(--color1);
+  transition: all .75s;
+}
+
+.compra {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  font-size: .9em;
+  font-weight: 400;
+  justify-content: center;
+  align-items: baseline;
+  background-color: var(--color1);
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin: 0;
+  border-radius: 0px 0 10px 10px;
+}
+
+.compra input {
+  width: 35px;
+  padding:5px;
+  font-size: 1.1em;
+  border: 1px solid var(--color2);
+  background-color: var(--color3);
+  color: var(--color1);
+  border-radius: 5px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.compra button {
+  background: transparent;
+  border: 1px solid var(--color3);
+  color:var(--color3);
+  line-height: 1em;
+  padding: 7px;
+  box-shadow: 3px 3px 5px #00000066;
+  transition: all .4s;
+  border-radius: 5px;
+}
+
+.compra button:hover {
+  background: #00000022;
+  border: 1px solid var(--color3);
+  color:var(--color3);
+  transition: all .4s;
+}
+
+.compra label {
+  color:var(--color3);
+  text-transform: uppercase;
+  font-weight: 600;
+  text-align: right;
+  margin-left: 5px;
+}
+
+.nodal{
+  position:absolute;
+  display:flex;
+  width: 100vw;
+  height: 100vh;
+  background: #04021999;
+  backdrop-filter: blur(4px);
+  left: 0;
+  top: 0;
+  z-index: 25;
+  align-items: center;
+  justify-content: center;
+}
+
+.nodalBackground{
+  background-color: var(--color4);
+  height:100vh;
+  position:static;
+  bottom: 0;
+}
+
+.message {
+  height: fit-content;
+  max-width: 250px;
+  margin: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  color: var(--color2);
+  background-color: var(--color1);
+  font-size: 1.4em;
+  padding: 5px;
+  border: 1px solid var(--color3);
+  border-radius: 10px;
+  box-shadow: 5px 5px 6px #00000077;
+}
+
+.message h5 {
+  font-family: 'Work Sans', sans-serif;
+  padding: 10px;
+  margin: 5px;
+  margin-bottom:10px;
+  background: var(--color2);
+  color:var(--color1);
+  border-radius: 5px;
+}
+
+.message button {
+  padding: 5px;
+  margin: 5px;
+  display: inline;
+  background-color: var(--color3);
+  color: var(--color1);
+  max-width: fit-content;
+  border: 1px solid white;
+  border-radius: 5px;
+}
+
+.Footer {
+  display: flex;
+  width: 100vw;
+  flex-direction: row;
+  justify-content: center;
+  background-color: var(--color1);
+  margin: 0;
+}
+
+.Footer ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.Footer li {
+  margin: 10px;
+  list-style-type: none;
+  font-family: 'Fugaz One';
+  color:var(--color2);
+}
+
+.formContainer, .confirmData{
+  position: relative;
+  border: 1px  var(--color2) solid;
+  border-radius: 10px;
+  background-image: radial-gradient( circle farthest-corner at 10% 20%, var(--color5) 0%, var(--color4) 90% );
+  box-shadow: 10px 10px 10px #000000ee;
+  padding: 25px;
+  width: fit-content;
+  height:fit-content;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: .9em;
+}
+
+.formContainer div, .confirmData div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  color: var(--color1);
+}
+
+.formContainer label {
+  color:var(--color1);
+}
+
+.formContainer input, 
+.formContainer select, 
+.formContainer button,
+.confirmData button {
+  background-color: var(--color5);
+  color: var(--color1);
+  border: var(--color1) 1px solid;
+  border-radius: 4px;
+  padding: 5px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  margin-right: 15px;
+}
+
+.formContainer input:focus, 
+.formContainer select:focus, 
+.formContainer button:focus {
+  border: 1px solid var(--color2);
+  box-shadow: 8px 8px 10px #00000066;
+}
+
+.confirmData {
+  z-index: 10;
+  box-shadow: #121212 5px 5px 2px;
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+}
+
+.confirmData div {
+  border-bottom: 1px solid var(--color2);
+}
+
+.confirmData h3 {
+  color:var(--color2);
+}
+
+.confirmData button {
+  background-color: var(--color1);
+  width: 30%;
+}
