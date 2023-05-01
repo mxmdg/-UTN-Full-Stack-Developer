@@ -2,12 +2,15 @@ import { useState , useEffect} from 'react'
 import { useParams } from 'react-router-dom'
 import '../styles/index.css'
 import ErrorMessage from '../components/ErrorMessage'
+import LightGallery from './LightGallery'
 
 
 
 const GetProductoDetalleML = (props)=> {
     const [useLoading, setLoading] = useState(true)
     const [useProducto,setProducto] = useState([])
+    const [useDescription, setDescription] = useState('')
+    const [useImages, setImages] = useState([])
     const { id } = useParams()
     const [useMessage , setMessage] = useState('')
 
@@ -16,12 +19,15 @@ const GetProductoDetalleML = (props)=> {
         const queryML = async (id)=>{
             try {
                 const res = await fetch("https://api.mercadolibre.com/items/" + id).then(res=>res.json())
+                const desc = await fetch("https://api.mercadolibre.com/items/" + id + "/description").then(desc=>desc.json())
                 if (res.error) {
                     setMessage('404 - ' + res.error)
                     setLoading(false)
                 } else {
                     setProducto(res)
+                    setDescription(desc.plain_text)
                     setLoading(false)
+                    setImages(res.pictures)
                 }
             } catch (e) {
                 console.log(e)
@@ -39,22 +45,22 @@ const GetProductoDetalleML = (props)=> {
     } else if (useMessage !== '') {
         return <ErrorMessage message={useMessage} deleteMessage={setMessage}/>
     } else {
-        return <>
+        return <div  className='mainContainer'>
                     <div>
-                       <h4>{useProducto.title}</h4>
-                       <h5>{useProducto.currency_id} {useProducto.price}</h5>
-                    </div>
-                    <div>
-
+                       <h5>{useProducto.title}</h5>
+                       <div className='compra'>
+                            <h4>{useProducto.currency_id} {useProducto.price}</h4>
+                            <a href={useProducto.permalink}><button>Comprar</button></a>
+                       </div>               
                     </div>
                     <div className='images'>
-                        {useProducto.pictures.map((img)=>{
-                            return (
-                                <img src={img.url} alt="" />
-                            )
-                        })}
+                        <LightGallery images={useImages}/>
                     </div>
-                </>
+                    <div>
+                        <h4>Descripcion</h4>
+                        <p>{useDescription}</p>
+                    </div>
+                </div>
     } 
 }
 

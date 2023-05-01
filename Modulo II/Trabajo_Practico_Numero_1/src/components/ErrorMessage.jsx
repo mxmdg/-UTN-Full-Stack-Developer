@@ -27,7 +27,7 @@ function ErrorMessage(props){
                     <div className="nodal"  >
                         <div className='message compra'>
                             <h5>{useMessage}</h5>
-                            <button onClick={backHandler}>Aceptar</button>
+                            <button onClick={backHandler}>Volver</button>
                         </div>
                     </div>
                 </div>)

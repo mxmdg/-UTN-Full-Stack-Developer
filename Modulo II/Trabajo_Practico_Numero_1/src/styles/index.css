@@ -5,6 +5,15 @@ font-family: 'Carter One', cursive;
   font-family: 'Fugaz One', cursive;
   font-family: 'Lobster', cursive;
   font-family: 'Work Sans', sans-serif;
+
+  Color primario: #F15A29
+  Color secundario: #1ABC9C
+  Color de acento: #F2C640
+  Color de fondo claro: #F9F7F7
+  Color de fondo oscuro: #282828
+  Color de texto claro: #FFFFFF
+  Color de texto oscuro: #222222
+
 */
 :root {
   --color1: #ff6464;
@@ -18,8 +27,9 @@ font-family: 'Carter One', cursive;
   --color31: #5be7a9aa;
   --color33: #f8fe8533;
   --color39: #f8fe8511;
-  height: 100vh;
+  height: 100%;
   box-sizing: content-box;
+  background-image: linear-gradient(100deg, var(--color2), var(--color3) );
 }
 
 body {
@@ -41,7 +51,7 @@ code {
 }
 
 .App, .mainContainer {
-  background-image: linear-gradient(15deg, var(--color2), var(--color3) );
+  
   margin: 0;
   padding: 0;
 }
@@ -60,11 +70,12 @@ code {
   display: grid;
   box-sizing:content-box;
   grid-auto-flow: dense;
-  gap: 020px;
+  gap: 20px;
   padding-top: 50px;
   padding-bottom: 100px;
   grid-template-columns: repeat(auto-fill, 250px);
   width: 100vw;
+  max-width: 1200px;
   min-height: 45vh;
   margin:auto;
   text-align: left;
@@ -72,37 +83,72 @@ code {
 }
 
 .mainContainer h3{
+  position: absolute;
+  z-index: 5;
   font-family: 'Carter One', cursive;
-  max-width: 100%;
+  max-width: 86%;
   overflow: hidden;
   color:var(--color3);
   text-align: center;
   font-size: auto;
   line-height: 1.6rem;
-  margin: 15px;
+  margin: auto;
   transform: rotate(-7deg);
+  text-shadow: 2px 2px 4px #111;
+}
+
+.mainContainer h4 {
+  font-size: 1.5em;
+  color: var(--color1);
+  text-transform: uppercase;
+  font-weight: 400;
+  background-color: var(--color5);
+  padding: 15px;
+  margin: 0;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.mainContainer h5 {
+  font-size: 1.4em;
+  color: var(--color4);
+  text-transform: uppercase;
+  font-weight: 400;
+  background-color: var(--color5);
+  padding: 20px;
+  margin: 0;border: 1px solid #fff;
+  border-radius: 5px;
 }
 
 .mainContainer p {
-  margin: 10px;
-  text-align: center;
-  background-image: url('https://megaverde.com.ar/wp-content/uploads/2019/06/sydney-rae-668606-unsplash-scaled.jpg');
+  margin: 0;
+  padding: 20px;
+  text-align: left;
+  max-height: 42.5vh;
+  background-color: var(--color5);
+  border: 1px solid #fff;
+  border-radius: 5px;
+  overflow-x: scroll;
+  overflow-y: scroll;
 }
 
 .homeContainer {
   box-sizing: border-box;
   display: flex;
   justify-items: flex-start;
-  grid-column: 1 / span 4;
+  grid-column: 1 / span 3;
+  grid-row: 1 /span 1;
   margin: 0;
   background-image: linear-gradient(0deg, var(--color4), var(--color1) );
   padding: 30px;
-  border-radius: 25px;
+  border-radius: 10px;
+  text-shadow: #00000077 10px 10px 10px;
+  box-shadow: 10px 10px 7px #00000022;
 }
 
 .homeContainer h2{
   font-family: 'Carter One', cursive;
-  font-size: 4em;
+  font-size: 3em;
   line-height: 1.1em;
   text-align: center;
   color: var(--color3);
@@ -139,8 +185,7 @@ code {
 
 .inputSearch {
   background-color: var(--color1);
-  border: 2px solid var(--color4);
-  box-shadow: 5px 5px 5px #00000077;
+  border: 2px solid var(--color3);
   border-radius: 30px;
   font-family: 'Work Sans', sans-serif;
   font-weight: 600;
@@ -151,7 +196,13 @@ code {
   height: 53px;
   padding: 15px;
   margin: 15px;
+  transition: all .5s ease-in;
 }
+
+.inputSearch:hover {
+  box-shadow: 8px 8px 10px #00000066;
+  transition: all .5s ease-out;
+} 
 
 .inputSearch::placeholder {
   font-family: 'Work Sans', sans-serif;
@@ -170,37 +221,40 @@ code {
   flex-direction: column;
   justify-content: space-between;
   align-content: center;
-  background: var(--color4);
-  border: 1px solid var(--color4);
-  border-radius: 20px;
+  background-image: linear-gradient(180deg, var(--color4), var(--color31) );
+  border: 2px solid var(--color5);
+  border-radius: 10px;
   padding: 20px ;
   box-shadow: 10px 10px 7px #00000022;
-  transition: border-color .5s ease-out;
+  transition: all .5s ease-out;
 }
 
 .Productos div {
   width: 100%;
   text-align: center;
+
 }
 
 .Productos img {
   width:170px;
-  object-fit: scale-down;
+  border-radius: 10px;
   object-position: center;
+  filter: drop-shadow(2px 4px 6px #333);
+  margin-bottom: 15px;
 }
 
 .Productos h4 {
-  text-align: center;
-  background-color: var(--color3);
-  color:var(--color1);
-  padding: 5px;
-  margin: 0px;
-  padding-top:5px;
+  text-align: left;
+  font-weight: 300;
+  font-size: 1.1em;
+  /* background-color: var(--color3); */
+  color: #121212;
+  margin: 15px;
 }
 
 .Productos:hover {
   border-color: var(--color1);
-  transition: border-color 0.4s ease-in;
+  transition: all 0.4s ease-in;
 }
 
 .Productos table {
@@ -208,19 +262,26 @@ code {
   line-height: .9em;
   width: 100%;
   padding: 5px 10px 5px 10px;
-  background-color: var(--color2);
+  /* background-color: var(--color2); */
+  padding: 10px;
 }
 
-.Productos th {
-  width: 40%;
-  font-weight: 500;
+
+.Productos td, .Productos th {
+  width: 50%;
+  font-weight: 400;
+  padding: 10px;
+  padding-top: 20px;
   text-align: left;
+  background: linear-gradient(180deg, #00000001 70%, #00000016);
+  border: none;
+
 }
 
-.Productos td {
-  width: 60%;
-  font-weight: 700;
-  text-align: left;
+.ProdcutoData {
+  background-color: var(--color5);
+  border: 1px solid var(--color3);
+  border-radius: 10px;
 }
 
 .imgContainer {
@@ -228,27 +289,49 @@ code {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
 }
 
 .imgContainer a {
   display: block;
-  background-color: var(--color1);
-  padding: 5px;
-  border-radius: 20px;
-  border: 1px solid var(--color3);
-  margin: 10px;
+  width:90%;
+  background-color: var(--color5);
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--color1);
+  margin: auto;
+  margin-bottom: 5px;
   font-family: 'Work Sans', sans-serif;
   font-size: .8em;
   text-decoration: none;
   text-transform: uppercase;
-  color: var(--color3);
+  color: var(--color1);
+  box-shadow: #00000066 1px 1px 3px;
+  transition: all .5s ease-in;
 }
 
 .imgContainer a:hover {
   background-color: var(--color3);
   color: var(--color1);
-  transition: all .75s;
+  box-shadow: 8px 8px 10px #00000066;
+  transition: all .5s ease-out;
 }
+
+.images {
+  background-color: var(--color5);
+  border-radius: 5px;
+  border: 1px solid #fff;
+  grid-column: 2 / span 2;
+  max-height: 54vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.images img {
+  width: 150px;
+  padding: 5px;
+}
+
 
 .compra {
   display: flex;
@@ -258,19 +341,19 @@ code {
   font-weight: 400;
   justify-content: center;
   align-items: baseline;
-  background-color: var(--color1);
+  background-color: var(--color5);
   padding-top: 10px;
   padding-bottom: 10px;
-  margin: 0;
-  border-radius: 0px 0 10px 10px;
+  margin-top: 10px;
+  border-radius: 5px;
 }
 
 .compra input {
   width: 35px;
   padding:5px;
   font-size: 1.1em;
-  border: 1px solid var(--color2);
-  background-color: var(--color3);
+  border: 1px solid var(--color1);
+  background-color: var(--color5);
   color: var(--color1);
   border-radius: 5px;
   font-weight: 600;
@@ -279,25 +362,26 @@ code {
 
 .compra button {
   background: transparent;
-  border: 1px solid var(--color3);
-  color:var(--color3);
+  border: 1px solid var(--color1);
+  color:var(--color1);
   line-height: 1em;
   padding: 7px;
-  box-shadow: 3px 3px 5px #00000066;
-  transition: all .4s;
+  transition: all .5s ease-in;
   border-radius: 5px;
 }
 
 .compra button:hover {
-  background: #00000022;
-  border: 1px solid var(--color3);
-  color:var(--color3);
-  transition: all .4s;
+  background: var(--color1);
+  border: 1px solid var(--color5);
+  color:var(--color5);
+  box-shadow: 8px 8px 10px #00000066;
+  transition: all .5s ease-out;
 }
 
 .compra label {
-  color:var(--color3);
+  color:var(--color1);
   text-transform: uppercase;
+  font-size: .88em;
   font-weight: 600;
   text-align: right;
   margin-left: 5px;
@@ -332,16 +416,14 @@ code {
   flex-wrap: wrap;
   flex-direction: column;
   color: var(--color2);
-  background-color: var(--color1);
   font-size: 1.4em;
   padding: 5px;
-  border: 1px solid var(--color3);
   border-radius: 10px;
-  box-shadow: 5px 5px 6px #00000077;
 }
 
 .message h5 {
   font-family: 'Work Sans', sans-serif;
+  font-size: 1em;
   padding: 10px;
   margin: 5px;
   margin-bottom:10px;
@@ -387,13 +469,15 @@ code {
   position: relative;
   border: 1px  var(--color2) solid;
   border-radius: 10px;
-  background-image: radial-gradient( circle farthest-corner at 10% 20%, var(--color5) 0%, var(--color4) 90% );
-  box-shadow: 10px 10px 10px #000000ee;
+  background-image: radial-gradient( circle farthest-corner at 10% 20%, var(--color5) 40%, #fff 90% );
+  box-shadow: 10px 10px 7px #00000022;
   padding: 25px;
   width: fit-content;
   height:fit-content;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: .9em;
+  font-family: 'Carter One', cursive;
+  font-size: 1.1em;
+  line-height: 1.2em;
+  transition: height .5s ease-in;
 }
 
 .formContainer div, .confirmData div {
@@ -409,6 +493,14 @@ code {
   color:var(--color1);
 }
 
+.formContainer span {
+  background-color: #900;
+  color: #ddd;
+  font-weight: 600;
+  padding: 5px;
+  width: 90%;
+}
+
 .formContainer input, 
 .formContainer select, 
 .formContainer button,
@@ -421,13 +513,18 @@ code {
   margin-top: 5px;
   margin-bottom: 10px;
   margin-right: 15px;
+  transition: all .5s ease-in;
 }
 
 .formContainer input:focus, 
 .formContainer select:focus, 
-.formContainer button:focus {
+.formContainer button:focus,
+.formContainer input:hover, 
+.formContainer select:hover, 
+.formContainer button:hover {
   border: 1px solid var(--color2);
   box-shadow: 8px 8px 10px #00000066;
+  transition: all .5s ease-out;
 }
 
 .confirmData {
@@ -449,4 +546,49 @@ code {
 .confirmData button {
   background-color: var(--color1);
   width: 30%;
+}
+
+/* Estilos para motores Webkit y blink (Chrome, Safari, Opera... )*/
+
+.images::-webkit-scrollbar, .mainContainer p::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+.images::-webkit-scrollbar:vertical {
+  background-color: #00000066;
+  width:10px;
+}
+
+.images::-webkit-scrollbar-button:increment,
+.images::-webkit-scrollbar-button,
+.mainContainer p::-webkit-scrollbar-button:increment,
+.mainContainer p::-webkit-scrollbar-button  {
+  color: #F00;
+} 
+
+.images::-webkit-scrollbar:horizontal,
+.mainContainer p::-webkit-scrollbar:horizontal {
+  height: 10px;
+  width: 10px;
+}
+
+.images::-webkit-scrollbar-thumb,
+.mainContainer p::-webkit-scrollbar-thumb {
+  background-color: var(--color1);
+  backdrop-filter: blur(5px);
+  width: 8px;
+  z-index: 10;
+  transition: all .4s;
+}
+
+.images::-webkit-scrollbar-thumb:hover,
+.mainContainer p::-webkit-scrollbar-thumb:hover  {
+  background-color: var(--color2);
+  transition: all .4s;
+}
+
+.images::-webkit-scrollbar-track,
+.mainContainer p::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: var(--color4);  
 }

@@ -1,4 +1,5 @@
 import Form from "../form/Form"
+import Login from "../form/Login"
 
 function Contacto(){
     return (<div className="mainContainer">
@@ -6,12 +7,12 @@ function Contacto(){
                     <h2>
                     Regístrate y comienza a disfrutar de los mejores productos frescos y de calidad en la comodidad de tu hogar.<br/>¡No te lo pierdas!
                     </h2>
-                </div>
+                </div>{/* 
                 <div className="formContainer">
                     <Form form='Register'/>
-                </div>
+                </div> */}
                 <div className="formContainer">
-                    <Form form='Ingresar'/>
+                    <Login form='Ingresar'/>
                 </div>
         </div>)
 

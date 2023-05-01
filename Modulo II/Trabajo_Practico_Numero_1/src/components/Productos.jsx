@@ -47,7 +47,7 @@ function Productos(item){
                     <img src={item.Ruta} alt={item.Nombre}/>
                     <Link id='ProductosDetalle' to={`/productosML/${item.SKU}`}>Ver detalle</Link>
                 </div>
-                <div>
+                <div className='ProdcutoData'>
                     <h4>{item.Descripcion}</h4>
                     <table>
                         <tbody>
@@ -66,23 +66,23 @@ function Productos(item){
                         </tbody> 
                     </table>
                 </div>
-            <div className="compra">
-                
-                {useCompra ? (
-                    <div className="message">
-                        <h5>{useMessage}</h5>
-                    <div>
-                        <button id="back" onClick={backHandler}>Volver</button>
-                    </div>
-                    </div>
-                    ) : (
-                        <>
-                            <label htmlFor="Cantidad">Cantidad</label>
-                            <input type="Number" id="Cantidad" name="Cantidad" onChange={qtyHandler}/>
-                            <button id="Comprar" onClick={buyHandler}>Comprar</button>
-                        </>
-                    )}
-            </div>
+                <div className="compra">
+                    
+                    {useCompra ? (
+                        <div className="message">
+                            <h5>{useMessage}</h5>
+                        <div>
+                            <button id="back" onClick={backHandler}>Volver</button>
+                        </div>
+                        </div>
+                        ) : (
+                            <>
+                                <label htmlFor="Cantidad">Cantidad</label>
+                                <input type="Number" id="Cantidad" name="Cantidad" onChange={qtyHandler}/>
+                                <button id="Comprar" onClick={buyHandler}>Comprar</button>
+                            </>
+                        )}
+                </div>
         </div>)
 
 }

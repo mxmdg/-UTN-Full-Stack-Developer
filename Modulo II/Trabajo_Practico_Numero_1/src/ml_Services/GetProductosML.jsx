@@ -68,6 +68,7 @@ const GetProductosML = (props)=> {
                         Stock={fruta.available_quantity}
                         key={fruta.id}
                         Ruta={fruta.thumbnail}
+                        permalink={fruta.permalink}
                     />))}
             </div>   
                 
