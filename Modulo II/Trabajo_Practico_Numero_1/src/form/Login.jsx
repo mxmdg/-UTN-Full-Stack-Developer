@@ -1,20 +1,31 @@
 import { useForm } from "react-hook-form";
-import { useState } from 'react'
+import { useState, useRef } from 'react'
+import { createUser, login } from '../services/userServices'
 
 const Login = (props)=> {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const [ useNewUser , setNewUser ] = useState(true)
     const [ useLogin , setLogin] = useState(false)
-    const onSubmit = () => setLogin(true);
+    const formRef = useRef(null);
+    
+    const onSubmit = (e) => {
+      try {
+        useNewUser?createUser(e):login(e.email,e.password)
+      } catch (e) {
+        alert(e)
+      }
+    };
   
     console.log(watch("user")); // watch input value by passing the name of it
+    console.log(useLogin)
 
     const toggleUser = ()=> {
       setNewUser(!useNewUser)
+      formRef.current.reset()
     }
 
     const userRender = (
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form ref={formRef} onSubmit={handleSubmit(onSubmit)}>
         {/* register your input into the hook by invoking the "register" function */}
         <div>
           <label>Correo Electronico</label>
@@ -33,13 +44,15 @@ const Login = (props)=> {
             {errors.password?.type === 'maxLength' && <span>La contraseña debe tener como maximo 12 caracteres</span> }
           </div> 
           {/* include validation with required or other standard HTML validation rules */}
-        <button onClick={toggleUser}>Registrarse</button>  
-        <input type="submit" />
+        <div className="buttonGroup">
+          <button onClick={toggleUser} className="outline">Registrarse</button>  
+          <input type="submit" className="filled" value='Entrar'/>
+        </div>
       </form>
     )
 
     const newUserRender = (
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form ref={formRef} onSubmit={handleSubmit(onSubmit)}>
         {/* register your input into the hook by invoking the "register" function */}
         <div>
           <label>Nombre</label>
@@ -70,8 +83,10 @@ const Login = (props)=> {
             {errors.password?.type === 'maxLength' && <span>La contraseña debe tener como maximo 12 caracteres</span> }
           </div> 
           {/* include validation with required or other standard HTML validation rules */}
-        <button onClick={toggleUser}>Ingresar</button>  
-        <input type="submit" />
+        <div className="buttonGroup">
+          <button onClick={toggleUser} className="outline">Ingresar</button>  
+          <input type="submit" className="filled" value='Registrarse'/>
+        </div>
       </form>
     )
               

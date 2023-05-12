@@ -36,7 +36,7 @@ function Gallery(props) {
             >
                 {useImg.map((imgUrl)=>{
                     return (<a href={imgUrl.src}>
-                                <img src={imgUrl.src} />
+                                <img src={imgUrl.src} alt={imgUrl.src} />
                             </a>)
                 })}
             </LightGallery>

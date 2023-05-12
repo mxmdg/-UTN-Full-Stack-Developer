@@ -15,6 +15,15 @@ let Register = [
         type: 'tel',
     },
     {
+        inputName: 'Tipo de comercio',
+        type: 'Select',
+        options: [{text:"Productor", value: "Productor"},
+                  {text:"Mayorista", value: "Mayorista"},
+                  {text:"Minorista", value: "Minorista"},
+                  {text:"Revendedor", value: "Revendedor"},
+                  {text:"Almacén", value: "Almacén"},]
+    },
+    {
         inputName: 'Contraseña',
         type: 'password',
     },

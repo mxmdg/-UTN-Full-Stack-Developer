@@ -36,8 +36,7 @@ const Form = (props)=> {
         default: 
                 title = "Credenciales"
                 dataForm = Ingresar
-                break; 
-            break;
+                break;
     }
     
     

@@ -1,29 +1,61 @@
-import { useState } from 'react'
-import * as React from "react";
-import '../styles/index.css'
-import { useSearchParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import { useState , useEffect } from 'react'
+import Productos from '../components/Productos'
+import ErrorMessage from '../components/ErrorMessage'
 
 
+const SearchProductsML = ()=>{
+    const param = useParams()
+    const [useLoading, setLoading] = useState(true)
+    const [useProductos,setProductos] = useState([])
+    const [useErrorMessage, setErrorMessage] = useState('')
 
-const SearchProductsML = ()=> {
-    const [useURL , setURL] = useState('')
-    const [useSearch, setSearch] = useSearchParams()
+    console.log(param.id)
 
-    const onChangeHandler = (e)=>{
-            e.preventDefault(e)
+    useEffect(()=>{
+        setLoading(true);
+        const queryML = async (search)=>{
+            try {
+                const res = await fetch("https://api.mercadolibre.com/sites/MLA/search?q=" + (search)).then(res=>res.json())
+                setProductos(res.results)
+                setLoading(false)
+            } catch(e) {
+                setErrorMessage(e)
+            }
+        }
+        queryML(param.id)
+    },[param])
 
-            setURL("/SearchProductsML/")
-            setSearch(e.target)
-            console.log(useSearch['*'])
-            window.open(useURL + useSearch , "_Self")
+    if (useLoading) {
+        return (
+            <div className='nodal'>
+                <div className='message'>
+                    <h5>Cargando...</h5>
+                </div>
+            </div>
+        )
+    } else if (useErrorMessage !== '') {
+        return <ErrorMessage message={useErrorMessage} deleteMessage={setErrorMessage}/>
+    } else {
+        return (
+            <>
+                {useProductos.map((fruta) => (
+                    <Productos
+                        Nombre={fruta.seller.nickname}
+                        Precio={fruta.price}
+                        Descripcion={fruta.title}
+                        Unidad={fruta.currency_id}
+                        SKU={fruta.id}
+                        Stock={fruta.available_quantity}
+                        key={fruta.id}
+                        Ruta={fruta.thumbnail}
+                        permalink={fruta.permalink}
+                    />
+                ))}
+            </>
+        )
     }
 
-
- return (
-        <div>
-            <input className='inputSearch' type='search' onBlur={onChangeHandler} placeholder='Buscar'/>
-        </div>
-        ) 
 }
 
 export default SearchProductsML

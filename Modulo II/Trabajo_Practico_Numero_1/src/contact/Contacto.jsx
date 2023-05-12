@@ -14,6 +14,7 @@ function Contacto(){
                 <div className="formContainer">
                     <Login form='Ingresar'/>
                 </div>
+                
         </div>)
 
 }

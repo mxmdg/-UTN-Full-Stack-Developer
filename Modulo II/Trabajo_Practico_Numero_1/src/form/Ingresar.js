@@ -6,7 +6,6 @@ let Ingresar = [{
         inputName: 'Contraseña',
         type: 'password'
     },
-    ,
     {
         inputName: '',
         type: 'hidden'

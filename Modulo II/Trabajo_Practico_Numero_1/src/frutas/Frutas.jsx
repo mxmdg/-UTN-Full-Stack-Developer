@@ -2,7 +2,7 @@ import FrutasList from "./FrutasList"
 import Productos from "../components/Productos"
 
 function Frutas(){
-    return (<div className="mainContainer">
+    return (<>
                 {FrutasList.map((fruta) => (<Productos
                     Nombre={fruta.Nombre}
                     Precio={fruta.Precio}
@@ -14,7 +14,7 @@ function Frutas(){
                     Ruta={fruta.Ruta}
                 />))}
                 
-            </div>)
+            </>)
 }
 
 export default Frutas

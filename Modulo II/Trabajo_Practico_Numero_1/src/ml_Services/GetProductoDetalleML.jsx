@@ -1,8 +1,12 @@
 import { useState , useEffect} from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams , Link } from 'react-router-dom'
 import '../styles/index.css'
 import ErrorMessage from '../components/ErrorMessage'
 import LightGallery from './LightGallery'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Card from 'react-bootstrap/Card'
+import Button from 'react-bootstrap/Button'
 
 
 
@@ -13,6 +17,8 @@ const GetProductoDetalleML = (props)=> {
     const [useImages, setImages] = useState([])
     const { id } = useParams()
     const [useMessage , setMessage] = useState('')
+
+    console.log('ID por parametro: ' + id)
 
    useEffect(()=>{
 
@@ -45,22 +51,22 @@ const GetProductoDetalleML = (props)=> {
     } else if (useMessage !== '') {
         return <ErrorMessage message={useMessage} deleteMessage={setMessage}/>
     } else {
-        return <div  className='mainContainer'>
-                    <div>
-                       <h5>{useProducto.title}</h5>
-                       <div className='compra'>
-                            <h4>{useProducto.currency_id} {useProducto.price}</h4>
-                            <a href={useProducto.permalink}><button>Comprar</button></a>
-                       </div>               
-                    </div>
-                    <div className='images'>
+        return <Row>
+                    <Card style={{ width: '18rem', background: 'var(--color5)', padding: '0.5rem', margin: '0.5rem' }}>
+                       <Card.Header><h4>{useProducto.title}</h4></Card.Header>
+                       <Card.Body>
+                            <p>{useDescription}</p>
+                       </Card.Body>
+                       <Card.Footer className='compra'>
+                            <h5>{useProducto.currency_id} {useProducto.price}</h5>
+                            <Button variant='outline-success' as={Link} to={useProducto.permalink}>Comprar</Button>
+                       </Card.Footer>               
+                    </Card>
+                    <Col className='images' style={{ background: 'var(--color5)', padding: '0.5rem', margin: '0.5rem' }}>
                         <LightGallery images={useImages}/>
-                    </div>
-                    <div>
-                        <h4>Descripcion</h4>
-                        <p>{useDescription}</p>
-                    </div>
-                </div>
+                    </Col>
+                
+                </Row>
     } 
 }
 
