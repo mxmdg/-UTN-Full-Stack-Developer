@@ -50,6 +50,7 @@ const SearchProductsML = ()=>{
                         key={fruta.id}
                         Ruta={fruta.thumbnail}
                         permalink={fruta.permalink}
+                        Origin='meLi'
                     />
                 ))}
             </>

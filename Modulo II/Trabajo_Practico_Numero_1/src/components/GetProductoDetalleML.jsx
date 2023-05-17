@@ -1,12 +1,14 @@
 import { useState , useEffect} from 'react'
 import { useParams , Link } from 'react-router-dom'
 import '../styles/index.css'
-import ErrorMessage from '../components/ErrorMessage'
-import LightGallery from './LightGallery'
+import ErrorMessage from './ErrorMessage'
+import LightGallery from '../ml_Services/LightGallery'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
+import LoadingDiv from './LoadingDiv'
+import { queryMLProduct , queryMLDescription } from '../ml_Services/queryML'
 
 
 
@@ -24,8 +26,8 @@ const GetProductoDetalleML = (props)=> {
 
         const queryML = async (id)=>{
             try {
-                const res = await fetch("https://api.mercadolibre.com/items/" + id).then(res=>res.json())
-                const desc = await fetch("https://api.mercadolibre.com/items/" + id + "/description").then(desc=>desc.json())
+                const res = await queryMLProduct(id) 
+                const desc = await queryMLDescription(id) 
                 if (res.error) {
                     setMessage('404 - ' + res.error)
                     setLoading(false)
@@ -43,11 +45,7 @@ const GetProductoDetalleML = (props)=> {
    },[id])
 
     if (useLoading) {
-        return (<div className='nodal'>
-                    <div className='message'>
-                       <h5>Cargando...</h5>
-                    </div>
-            </div>)
+        return (<LoadingDiv />)
     } else if (useMessage !== '') {
         return <ErrorMessage message={useMessage} deleteMessage={setMessage}/>
     } else {

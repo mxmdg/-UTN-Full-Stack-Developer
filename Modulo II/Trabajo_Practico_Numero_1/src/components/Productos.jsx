@@ -9,6 +9,7 @@ import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col'
 import Table from 'react-bootstrap/Table'
 import Collapse from 'react-bootstrap/Collapse'
+import { getProductByID } from '../services/productServices'
 
 function Productos(item){
 
@@ -17,6 +18,7 @@ function Productos(item){
     const [useMessage , setMessage] = useState('')
     const [useMessageType , setMessageType ] = useState('')
     const [useStock , setStock] = useState(item.Stock - useCantidad)
+    const [useOrigin , setOrigin] = useState(item.Origin)
 
     /* const logs = ()=> {
         console.log(`_________________________________`)
@@ -51,12 +53,25 @@ function Productos(item){
         setMessage('')
     }
 
+    const EditHandler = (id)=> {
+        try {
+            getProductByID(id)
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+
     return (
         <Col>
         <Card style={{ width: '18rem', height:'98%', background: 'var(--color5)', padding: '0.5rem', margin: '0.5rem' }}>
-           
+            <Card.Header>
+                <Card.Title>
+                    {item.Nombre}
+                </Card.Title>
+            </Card.Header>
             <Card.Body>
-                <Card.Title>{item.Descripcion}</Card.Title>
+                <Card.Subtitle>{item.Descripcion}</Card.Subtitle>
                 <Table striped bordered hover size="sm">
                         <tbody>
                             <tr>
@@ -76,21 +91,39 @@ function Productos(item){
                 
             </Card.Body>
             <Card.Img variant="bottom" src={item.Ruta} />
-            <Button size='sm'
-                    variant="outline-success" 
+                <div>
+                <Button size='sm'
+                    variant="outline-primary" 
                     as={Link} 
-                    to={'/productosML/' + item.SKU}
+                    to={'/producto/edit/' + item.SKU}
                     style={{
                         boxShadow:'5px 5px 10px #555',
                         backdropFilter: 'blur(7px)',
                         width: 'fit-content',
                         alignSelf: 'center',
                         margin: '5px',
-                        position:'absolute',
+                        position:'relative',
+                        bottom: '75px'
+                     }}>
+                    Editar
+            </Button>
+            <Button size='sm'
+                    variant="outline-success"
+                    id='ProductosDetalle' 
+                    as={Link} 
+                    to={(useOrigin==='firebase')?(`/producto/${item.SKU}`):(`/productosML/${item.SKU}`)}
+                    style={{
+                        boxShadow:'5px 5px 10px #555',
+                        backdropFilter: 'blur(7px)',
+                        width: 'fit-content',
+                        alignSelf: 'center',
+                        margin: '5px',
+                        position:'relative',
                         bottom: '75px'
                      }}>
                     Ver Detalle
             </Button>
+                </div>
             <Card.Footer className="text-muted">
                 <>
                     <ButtonToolbar className="mb-3" aria-label="Toolbar with Button groups">

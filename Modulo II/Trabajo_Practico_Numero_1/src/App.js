@@ -1,5 +1,5 @@
 import Frutas from './frutas/Frutas';
-import GetProductoDetalleML from './ml_Services/GetProductoDetalleML';
+import GetProductoDetalleML from './components/GetProductoDetalleML';
 import SearchProductsML from './ml_Services/SearchProductsML';
 
 // import SearchProductsML from './ml_Services/SearchProductsML';
@@ -14,6 +14,10 @@ import ErrorMessage from './components/ErrorMessage';
 import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
+import ShowProducts from './frutas/ShowProducts';
+import AddProduct from './frutas/AddProduct';
+import EditProduct from './frutas/EditProduct';
+import GetProductoDetalle from './components/GetProductoDetalle';
 
 
 function App() {
@@ -35,6 +39,10 @@ function App() {
                       <Route path="/frutas" element={<Frutas />} />
                       <Route path="/productosML/search/:id" element={<SearchProductsML />} />
                       <Route path="/productosML/:id" element={<GetProductoDetalleML />} />
+                      <Route path="/producto/nuevo" element={<AddProduct />} />
+                      <Route path="/producto/edit/:id" element={<EditProduct />} />
+                      <Route path="/producto/catalogue" element={<ShowProducts />} />
+                      <Route path="/producto/:id" element={<GetProductoDetalle/>} />
                       <Route path="/contacto" element={<Contacto />} />
                       <Route path="*" element={<ErrorMessage message={`404- Lo sentimos mucho. No pudimos encontrar esta dirección.`}/>} />              
                     </Routes>  

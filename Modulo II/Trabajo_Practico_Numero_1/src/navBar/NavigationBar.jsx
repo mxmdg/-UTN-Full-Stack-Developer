@@ -7,6 +7,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
+
 function NavigationBar() {
   const [useSearch, setSearch] = useState('')
  
@@ -40,10 +41,10 @@ function NavigationBar() {
                 <Nav.Link as={Link}to="/frutas">Frutas</Nav.Link>
                 <Nav.Link as={Link}to="/productosML/search/bananas">Mercado Libre</Nav.Link>
                 <Nav.Link as={Link}to="/contacto">Contacto</Nav.Link>
-              <NavDropdown title="Link" id="navbarScrollingDropdown">
-                <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action4">
-                  Another action
+              <NavDropdown title="Productos" id="navbarScrollingDropdown">
+                <NavDropdown.Item as={Link}to="/producto/nuevo">Nuevo</NavDropdown.Item>
+                <NavDropdown.Item as={Link}to="/producto/catalogue">
+                  Nuestros Productos
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="#action5">

@@ -1,7 +1,7 @@
 import FrutasList from '../frutas/FrutasList'
 import Productos from "../components/Productos"
 import {useState , useEffect} from 'react'
-import queryML from "../ml_Services/queryML"
+import { queryML } from "../ml_Services/queryML"
 import Login from '../form/Login'
 import Container from 'react-bootstrap/Container'
 import Carousel from 'react-bootstrap/Carousel'
